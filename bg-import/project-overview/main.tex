@@ -1,0 +1,102 @@
+\documentclass{amsart}
+
+% Separate paragraphs.
+\setlength{\parskip}{\bigskipamount}
+
+% Include AMS math functionality.
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{mathrsfs}
+
+% Use hollow squares for list items.
+\usepackage{latexsym}
+\makeatletter
+\AtBeginDocument{
+  \def\labelitemi{\(\Box\)}
+}
+
+% Program code.
+\usepackage{listings}
+\lstset{language=Java, basicstyle=\tiny, showstringspaces=false}
+
+% Diagrams.
+%\usepackage[all]{xy}
+
+% External graphics.
+\usepackage{graphicx}
+
+% Enable links in PDF output, making them black and w/ no frame around -- also sections 
+% will be displayed in bookmarks pane.
+\usepackage[colorlinks,linkcolor=black,citecolor=black]{hyperref}
+
+% Comments -- e.g. \comments{blah, blah}.  Useful for multiline comments as avoids 
+% one to write % at the beginning of each line.
+\newcommand{\comments}[1]{}
+
+
+
+\begin{document}
+
+\begin{titlepage}
+\begin{center}
+
+\textsc{\small Institut de Genetique Humaine --- CNRS}\\[0.5cm]
+
+\rule{114mm}{.1pt} \\[0.5cm]
+\textsc{\LARGE OMERO \\[0.2cm] Background Import}  \\[0.5cm]
+\rule{114mm}{.1pt} \\[0.5cm]
+
+\begin{minipage}{114mm}
+\begin{flushright} \large
+$\mathcal{PROJECT~OVERVIEW~DOCUMENT}$
+\end{flushright}
+\end{minipage} \\[2cm]
+
+\begin{minipage}{80mm}
+\textsc{\large Abstract}.
+Background Import is an extension of the Open Microscopy Environment software 
+platform that will allow to import images into the OMERO image repository without 
+requiring experimenters to be logged onto the acquisition workstation, thus reducing
+costs and optimising resource usage of microscope facilities. 
+This document provides an overview of the Background Import project by summarising 
+key information about goals and scope, requirements, solution architecture, and 
+project plan.
+\\[0.5cm]
+\textbf{NB} This document is an \textbf{early draft} and is subject to change.
+\end{minipage}
+
+\vfill
+Volker \textsc{Baecker} \\
+Andrea \textsc{Falconi} \\
+Julio \textsc{Mateos-Langerak} \\[1cm]
+{\large June, 2015}
+\end{center}
+
+\end{titlepage}
+
+
+\input{introduction}
+% \vfill
+% \pagebreak
+\input{software-architecture}
+% \vfill
+% \pagebreak
+\input{project-plan}
+% \vfill
+% \pagebreak
+\input{methodology}
+% \vfill
+% \pagebreak
+\input{future-work}
+% \vfill
+% \pagebreak
+\input{conclusions}
+
+
+% \vfill
+% \pagebreak 
+\bibliographystyle{plain}
+\bibliography{references}
+
+\end{document}

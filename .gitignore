@@ -1,0 +1,7 @@
+.DS_Store
+auto
+*.aux
+*.bbl
+*.blg
+*.log
+*.out

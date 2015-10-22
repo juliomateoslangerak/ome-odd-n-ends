@@ -1,0 +1,17 @@
+The Background Importer is an extension of the Open Microscopy Environment software 
+platform\cite{ome:www} that will allow to import images into the OMERO\cite{ome:omero-pub,
+ome:omero-www} image repository without requiring experimenters to be logged onto the 
+acquisition workstation. 
+After images have been produced by a microscope, experimenters can import them directly
+from the acquisition workstation into the OMERO image repository but, presently, for
+this to happen they cannot log out of the workstation until the image data have been
+fully transferred out of the workstation into the repository. Thus, other experimenters
+will not be able to use the microscope until the import process is finished and the time
+it takes to run the import is billed for.
+The Background Importer is going to remedy this situation by allowing experimenters to
+log out just after triggering the import which will then run autonomously to completion,
+thus optimising facility costs and resources usage.
+This document provides an overview of the Background Importer project by summarising 
+key information about project goals and scope, requirements, solution architecture, 
+and project plan.
+

@@ -1,0 +1,26 @@
+\section{Future Work}
+
+The Background Import project is, at this stage, an MRI custom extension to the OMERO
+platform and, as such, not officially endorsed by OME. However, our use cases may turn 
+out to be fairly common at other facilities worldwide, in which case Background Import
+functionality could be integrated into mainstream OMERO. We will engage with the OMERO
+core developers to discuss integration. 
+This may require some changes to the Background Import code, for example, factoring it
+out from the OMERO Java client into its own OMERO project. 
+Also, new features could easily be added to make it more flexible and, hence, usable 
+in a wider array of scenarios. Specifically, the Import Proxy could operate in ``pull''
+mode too: images could be fetched from a remote workstation; thus several acquisition
+workstations could share the same Import Proxy service. We estimate this to require 
+roughly between one and two months of development.
+
+More generally, one could envision a system in which end users need not worry or be
+aware of where images are physically stored or how they can be accessed.
+At acquisition time, an user would select where the image belongs in a given \emph{
+logical} hierarchical structure of their choice---a virtual file system; under the 
+hood the system would stream the image data to physical cloud storage. (Note that
+physical storage and logical hierarchical structure would be \emph{independent}.)
+The cloud software would then let the user access the image from any cloud-enabled
+device, using the same logical hierarchical structure. OMERO would be integrated in
+the cloud to enable image viewing, management, and analysis which could now be done
+from any device connected to the cloud via a web browser.
+We will explore this avenue further if it is of any interest to MRI.

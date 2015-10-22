@@ -1,0 +1,65 @@
+
+\section{Introduction}
+
+\subsection{Background and Context}
+Montpellier RIO Imaging (MRI) is a multi-site imaging core facility with over 700 active
+users and more than 60 acquisition systems.
+Due to the sheer size and complexity of the structure, the staff is facing an increasing
+number of data management and analysis challenges. To overcome these challenges, MRI
+decided to adopt OMERO\cite{ome:omero-pub,ome:omero-www} as the main infrastructure for
+the storage, management, and analysis of image data. There are also plans to participate
+in the development of OMERO to better serve the specific needs of the local imaging 
+community.
+
+OMERO software has been deployed to most acquisition workstations within MRI so that
+after images have been produced by a microscope, experimenters can import them directly
+from an acquisition workstation into the OMERO image repository. Of course, they still
+have an option to copy the image data to some other storage facility of their own choice. 
+Either way, data will have to be transferred out of the workstation as acquired images 
+are periodically deleted from local storage to make room for new ones. Whichever way
+experimenters choose to transfer the data currently requires them to be logged on the 
+acquisition workstation until the image data have been fully transferred out of the
+workstation into the designated storage location. 
+
+This arrangement has the following disadvantages:
+\begin{itemize}
+\item \emph{Lessened microscope availability}. A microscope is not available to other
+ users until the experimenter has logged out of the acquisition workstation so the next
+ user will have to wait until the transfer is finished. 
+\item \emph{Additional costs}. Because experimenters are billed for the amount of time 
+ they are logged on an acquisition workstation, the time it takes to transfer the data 
+ is billed too. 
+\end{itemize}
+
+Note that these issues are not inherent to the OMERO import workflow or, more generally,
+to the data transfer mechanism per se, but rather are caused by the fact that the  
+\emph{data transfer is tied to a user session}.
+
+
+\subsection{Proposed Solution}
+This project aims to remove the above limitations. The goals are cost and resource usage
+optimisation within microscope facilities as well as demonstrating that this can easily
+be accomplished using OMERO technology.
+
+To this end, we propose an extension to the Open Microscopy Environment software 
+platform\cite{ome:www}. The idea is to develop a set of software components and 
+integrate them into the existing OMERO platform so to allow experimenters to log 
+out just after triggering an image import into the OMERO repository. The import 
+will then run autonomously to completion, thus making the microscope immediately
+available to the next user and avoiding billing for the data transfer.
+
+
+\subsection{Document Outline}
+The reminder of this document provides information about key project areas at a level
+of detail suitable to support initial project execution. More in-depth and refined 
+documentation will be provided during the course of the project as the need arises.
+
+The next section is devoted to the software architecture. In it, requirements are
+stated and key solution aspects, from design to testing to deployment, are described
+by means of interlocking views and their relation to requirements.
+This information forms the basis for scoping and planning which are discussed in the
+following section, the Project Plan. 
+Then, in the Methodology section, we consider software process issues, development
+activities and tools.
+The final sections explore possible avenues for future work and collect some initial
+considerations about the project.

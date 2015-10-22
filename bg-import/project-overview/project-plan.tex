@@ -1,0 +1,108 @@
+\section{Project Plan}
+Below is a high-level project plan. The plan is broken down into subsequent phases
+(loosely following the Unified Process, see e.g. \cite{kruchten:rup}) that will be
+executed sequentially; within each phase there is a summary of the tasks to carry 
+out to reach the completion of that phase. Tasks within each phase may be carried 
+out concurrently as needed. Milestones track project progress by specifying what is
+the expected outcome at a point in time and how long it is expected to take---i.e. 
+a time estimate for the completion of all the tasks leading up to that 
+milestone.\footnote{Each task was estimated separately using PERT three-point 
+estimation: Call $b$, $w$, $l$ the best, worst, likely task completion time, 
+respectively; we took the expected completion time $t$ to be: $t = \frac{b + 4l + w}{6}$. 
+Then we summed up expected completion times for the tasks leading up to that milestone.
+}
+
+\subsection{Inception}
+
+\subsubsection*{Goals}
+Initiate project and prepare ground for development. 
+
+\subsubsection*{Tasks} 
+Establish vision, scope and justification for project. 
+Gather key requirements and identify risks.
+Familiarise with OMERO platform.
+Build development, test, and server virtual machines.
+
+\subsubsection*{Milestone (M1)}
+All inception tasks completed. Virtual machines ready for development cycles.
+Project approved by CNRS steering committee.
+\emph{Expected Completion Time}: 15 days.
+
+\subsection{Elaboration}
+
+\subsubsection*{Goals}
+Establish and validate solution architecture. 
+
+\subsubsection*{Tasks} 
+Analyse requirements.
+Study candidate solutions.
+Attend OMERO conference to discuss plans and development options.
+Select solution architecture and produce project plan.
+Write project overview document (only draft needed).
+Familiarise with ISO certification procedure and Redmine project management.
+
+\subsubsection*{Milestone (M2)}
+All elaboration tasks completed. Project managed in Redmine and ready to be audited.
+\emph{Expected Completion Time}: 24 days.
+
+\subsection{Construction}
+
+\subsubsection*{Goals}
+Implement system features. 
+
+\subsubsection*{Tasks} 
+Develop initial prototype: Import Proxy ICE interface; ICE servant and client; Import
+Plugin button and asynchronous call to the proxy.
+Develop unit and integration tests. 
+Have small group of end users test and evaluate product; steer further development
+according to received feedback.
+
+\subsubsection*{Milestone (M3)}
+Prototype is stable and other system features can be added.
+\emph{Expected Completion Time}: 16 days. %% from July 1 to 23
+
+\subsubsection*{Tasks} 
+Evolve prototype into deliverable product by implementing: write-ahead log, locking,
+notifications, configuration, server control interface, control script.
+Develop unit and integration tests.
+Write developer documentation.
+Build pre-production environment to deploy and test deliverable.
+End to end testing.
+Load testing.
+
+\subsubsection*{Milestone (M4)}
+All construction tasks completed. All system features implemented. System fully tested
+and ready for deployment.
+\emph{Expected Completion Time}: 27 days. %% from July 24 to August 31
+
+\subsection{Transition}
+
+\subsubsection*{Goals}
+Deploy system to production environment. Refine product to incorporate any feedback
+received from end users.
+
+\subsubsection*{Tasks} 
+Conduct pilot deployment using small group of end users to test and evaluate product
+in production environment: install OMERO Java client on selected machines, set up 
+Import Proxy service, assign permissions, configure admin mailbox.
+Monitor running system and fix any issues.
+Collect feedback from end users and refine product as needed.
+Prepare end-user training materials.
+Write end-user documentation. 
+
+\subsubsection*{Milestone (M5)}
+System is running smoothly in a controlled production environment. Any issues have 
+been fixed and end-user feedback incorporated into product. System is ready for 
+deployment to all MRI target machines.
+\emph{Expected Completion Time}: 19 days. %% from September 1 to 25
+
+\subsubsection*{Tasks}
+Deploy system to all MRI target machines.
+Monitor deployment and fix any issues.
+
+\subsubsection*{Milestone (M6)}
+All transition tasks completed. System is running smoothly in production environment. 
+Project ends and product enters maintenance phase.
+\emph{Expected Completion Time}: 5 days. %% from September 28 to October 2
+
+

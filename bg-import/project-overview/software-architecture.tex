@@ -1,0 +1,115 @@
+\section{Software Architecture}
+
+Each of the coming subsections provides an architectural view\cite{soni:views,
+kruchten:views}, addressing a specific facet of the Background Import; taken 
+together, these views convey just enough information to describe the architecture
+of the proposed solution at a very-high level.\footnote{A more detailed software 
+architecture document may be provided during the course of the project if the need
+for it arises.}
+The reader is assumed to be familiar with the OMERO platform and its implementation
+at MRI---deployment, operation, network topology, etc.
+
+\subsection{Requirements}
+As already discussed in the introduction, the key requirement is to untie the image
+import from the login session. Whatever the mechanism to achieve this, the transfer
+quality, in terms of reliability and performance, should not degrade.
+Resource usage (CPU, I/O, etc.) on the acquisition workstation should not be any
+higher than that of the OMERO importer and microscope operation should not be affected.
+Additionally, robust failure handling and recovering has to be in place so that users
+and system administrators are notified of failures and failed imports can be retried 
+or resumed as appropriate; successful imports have to be notified to the users who 
+requested them. Data integrity must be preserved and it should not be possible to 
+remove a file while it is being imported. 
+
+\subsection{Functional View}
+The idea is to have a new background process, the Import Proxy, that can run an image 
+import on behalf of OMERO clients; this process would run outside of any user session
+so to untie the image data transfer from login sessions. 
+
+In detail, the Import Proxy is a Java ICE servant exposing an asynchronous call that 
+accepts the exact same inputs as those the OMERO client currently passes to the OMERO
+server to perform an import (object hierarchy, annotations, etc.) except for the image
+data which are instead replaced by a pointer to the actual image file. 
+The Import Proxy runs the import in the exact same way as the OMERO Java client does 
+presently---i.e. save inputs to OMERO server, parse and transfer image file. 
+The proxy process needs to have access to the files to import which are therefore 
+expected to be available either from the local file system, if the client and the 
+proxy run on the same machine, or via a network share, if the proxy is on a different
+machine.
+Files will be locked for the entire duration of the import in order to prevent users
+from accidentally deleting them before import completion; further data integrity is 
+already enforced by the current OMERO import functionality---e.g. SHA checksums. 
+Upon successful completion, the Import Proxy sends an email notification to the user
+who requested the import; if the import fails, both the user and system administrator
+are notified. A write-ahead log provides support for recovering from failures so
+that broken imports may be fixed, e.g. by retrying them if at all possible or by
+requesting the system administrator's intervention.
+
+Note that because the Import Proxy runs an import in the exact same way as the 
+current OMERO client does, transfer quality and resource usage should be the same 
+as what they presently are (i.e. no degradation) if the proxy and the client both
+run on the same host.
+
+In order to be able to use the Import Proxy, the OMERO Java client is extended with
+a new Import Plugin. This plugin is configurable so that Background Import functionality 
+will not be available for sites that do not require it---this is the default 
+configuration setting. The plugin provides a new button that users, after going 
+through the usual import workflow, can press to trigger a background import in which
+case the plugin calls the Importer Proxy and returns immediately; the user can then 
+quit the OMERO client and log out while the import is run in the background.
+
+
+\subsection{Development}
+The Background Import will be part of the OMERO Java client (Insight) project. All 
+the Background Import code will be developed in the OMERO Java client code base. Two 
+separate modules will be added: one for the Import Proxy and one for the Import Plugin.
+Build and configuration management are already in place for the entire OMERO Java client
+code base, so the current infrastructure will be adopted wholesale and existing coding 
+standards will be adhered to. 
+Automated testing is available too, so unit and integration tests will be developed and
+added to the current automated test suite.  
+The Background Import byte-code is also packaged inside the existing OMERO Java client 
+install bundle.
+
+Note that sharing of project infrastructure and deployment is advantageous in terms
+of speed of delivery but is not necessarily the best arrangement in terms of release
+management and deployment dependencies. So this may change in the future and the
+Background Import could become a separate OMERO project.
+
+
+\subsection{Deployment}
+In our deployment configuration, the OMERO Java client is installed on each acquisition
+workstation. The client is configured to use the Import Proxy which runs as a service
+on the same workstation. The service is set up using a control script included in the
+client install bundle; the script starts (stops/restarts) a Java process to run the
+Import Proxy code which is also part of the same client bundle. 
+Thus, only one installation is needed to run both the client and the proxy. However,
+whereas the client is available to all workstation users, the proxy is a single 
+background process running on the workstation to service all users. The proxy uses
+whichever OMERO server the client is configured to use. 
+Run-time, hardware, and network requirements for our deployment configuration are 
+the same as those of a standard OMERO Java client deployment.
+
+
+\subsection{Operation}
+The installation procedure entails installing an OMERO Java client on each acquisition
+workstation (as currently done), configuring it to use the Import Proxy, and setting
+up the Import Proxy to run as a service using the provided control script. 
+Additionally, the account under which the proxy service runs needs to have enough 
+permissions to read any image produced by the microscope attached to the workstation.
+Upgrade procedures for the Background Import components are exactly the same as for
+an OMERO Java client deployment.
+
+The proxy service should be monitored (e.g. added to the list of processes monitored
+by system administrators) to ensure its availability. If the service is down, any user
+(of that workstation) trying to import an image would receive an error and would not 
+be able to import.
+Even though this can be remedied in minutes just by manually restarting the service, 
+it is best to try and prevent errors by automated monitoring and recovery in order to
+raise the quality of service.
+Any failure encountered by the Import Proxy while running an import will be emailed
+to a configured administrator mailbox which system administrators should make sure
+to have access to.
+
+User training and documentation will be provided. For support and assistance, users
+can contact system administrators.
