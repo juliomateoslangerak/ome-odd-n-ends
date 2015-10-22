@@ -111,8 +111,8 @@ Also note that `$ICE_HOME` is not defined; it should probably be set to:
 3. Python. Building and running Hello World worked out of the box.
 
 
-PostgreSQL [arch-postgres]
-----------
+[PostgreSQL][arch-postgres]
+------------
 **Install**
 
     sudo pacman -S postgresql 
@@ -156,8 +156,8 @@ so just go ahead and hit the "Fix Me" button as suggested by the dialog instruct
 4. Log file. To troubleshoot: `sudo journalctl -u postgresql`.
 
 
-Nginx [arch-nginx]
------
+[Nginx][arch-nginx]
+-------
 **Install**
 
     sudo pacman -S nginx
@@ -173,8 +173,8 @@ Perhaps in production it would be better to run the Web server on another box al
 (e.g. in a DMZ) if this is at all supported by OMERO.
 
 
-MEncoder [arch-mencoder]
---------
+[MEncoder][arch-mencoder]
+----------
 Required to use Movie Maker script (one of the OMERO.scripts):
 
     sudo pacman -S mencoder
