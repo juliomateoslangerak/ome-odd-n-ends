@@ -21,22 +21,28 @@ Add to `.xinitrc`:
 queried through Google. Also Eclipse doesn't need them.
 
 
-[Eclipse][arch-eclipse]
----------
+[Eclipse (Mars)]
+----------------
 **Core Installation**
-* Install Eclipse: `sudo pacman -S eclipse`
-* Install plugins: Data Tools Platform, Eclipse Java EE Developer Tools, Eclipse Web
-  Developer Tools, Eclipse XML Editors and Tools, JavaScript Development Tools,
-  Maven Integration for Eclipse, Maven (Java EE) Integration for Eclipse WTP,
-  Buildship Gradle Integration, TestNG. 
+* Download and install in home directory:
+
+        cd ~
+        tar xzf eclipse-java-mars-1-linux-gtk-x86_64.tar.gz
+        mv eclipse eclipse-mars
+    
+* Set Dark theme: *Window / Preferences / General / Appearance*
 * Add JDK 7 (JDK 8 would be picked up by default) to Eclipse's JRE's.
   (`src.zip` should be picked up automatically; docs will be online)
+* Optionally install plugins: Data Tools Platform, Eclipse Java EE Developer
+  Tools, Eclipse Web Developer Tools, JavaScript Development Tools, Maven
+  (Java EE) Integration for Eclipse WTP, TestNG.
 
 **Text Editors**
 * Tab width = 4 and insert spaces for tabs in *Window / Preferences / General /
   Editors / Text Editors*
+* Show print margin (same dialog as above)
 * Define new Java formatter profile from existing "Java Conventions" to specify spaces
-  only tab policy: *... / Preferences / Java / Code Style / Formatter*
+  only tab policy and tab width = 4: *... / Preferences / Java / Code Style / Formatter*
 
 **Look & Feel**
 * Install plugin: Eclipse Color Theme; select Solarized Dark in *Window / Preferences
@@ -44,13 +50,13 @@ queried through Google. Also Eclipse doesn't need them.
 * Set Monaco 13 for Text Editor and Text Block fonts: *... / Appearance / Colors and Fonts*
 
 **XMonad**
-* Add key binding: `("M-x i", spawn "eclipse")`
+* Add key binding: `("M-x i", spawn "/home/andrea/eclipse-mars/eclipse")`
 
 **Gradle**
 * (AUR) gradle
 
-Known Issues
-------------
+Notes
+-----
 1. *Eclipse Screen Rendering.* It seems sometimes damaged regions are not repainted. Also
 the built-in dark theme doesn't seem to work as some elements remain light and button text
 is unreadable. This affects the Eclipse Moonrise UI Theme, so don't bother installing it.
