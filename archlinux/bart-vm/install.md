@@ -8,22 +8,24 @@ This VM starts as a clone of this [madematix][madematix]'s snapshot:
 ------
 Install both Java 7 and 8 development environment:
 
-    sudo pacman -S jdk7-openjdk openjdk7-src
-    sudo pacman -S jdk8-openjdk openjdk8-src
+        sudo pacman -S jdk7-openjdk openjdk7-src
+        sudo pacman -S jdk8-openjdk openjdk8-src
 
 Add to `.xinitrc`:
 
-    export _JAVA_AWT_WM_NONREPARENTING=1
+        export _JAVA_AWT_WM_NONREPARENTING=1
 
 **NOTES**
+
 1. Use `archlinux-java` to switch between Java environments.
 2. Not installing Java Docs (`openjdk7-doc`, `openjdk8-doc`) as they're best viewed and
 queried through Google. Also Eclipse doesn't need them.
 
 
-[Eclipse (Mars)]
-----------------
+Eclipse (Mars)
+-------
 **Core Installation**
+
 * Download and install in home directory:
 
         cd ~
@@ -38,6 +40,7 @@ queried through Google. Also Eclipse doesn't need them.
   (Java EE) Integration for Eclipse WTP, TestNG.
 
 **Text Editors**
+
 * Tab width = 4 and insert spaces for tabs in *Window / Preferences / General /
   Editors / Text Editors*
 * Show print margin (same dialog as above)
@@ -45,21 +48,19 @@ queried through Google. Also Eclipse doesn't need them.
   only tab policy and tab width = 4: *... / Preferences / Java / Code Style / Formatter*
 
 **Look & Feel**
+
 * Install plugin: Eclipse Color Theme; select Solarized Dark in *Window / Preferences
   / General / Appearance*
 * Set Monaco 13 for Text Editor and Text Block fonts: *... / Appearance / Colors and Fonts*
 
 **XMonad**
+
 * Add key binding: `("M-x i", spawn "/home/andrea/eclipse-mars/eclipse")`
 
 **Gradle**
+
 * (AUR) gradle
 
-Notes
------
-1. *Eclipse Screen Rendering.* It seems sometimes damaged regions are not repainted. Also
-the built-in dark theme doesn't seem to work as some elements remain light and button text
-is unreadable. This affects the Eclipse Moonrise UI Theme, so don't bother installing it.
 
 [Python][arch-python]
 --------
@@ -79,12 +80,10 @@ Tweak environment to default to Python 2:
 * edit `PATH` in `~/.bashrc`: `PATH=~/bin: ...all the rest...`
 
 **NOTES**
+
 1. OME scripts use Python 2. Invoking them with the Python 2 interpreter (`python2`) is
 not going to help because some of them call, in turn, other scripts that start with the
-following shebang:
-
-    #!/usr/bin/env python
-
+following shebang: `#!/usr/bin/env python`
 which would result in the Python 3 interpreter being called. The above tweak will make
 any such script use Python 2 instead of 3.
 2. Python 2's command is `/usr/bin/python2`, whereas Python 3's is `/usr/bin/python`.
@@ -129,9 +128,10 @@ OMERO
 -----
 To build OMERO, we still need one dependency:
 
-    sudo pacman -S python2-genshi
+        sudo pacman -S python2-genshi
 
 **NOTES**
+
 1. Genshi is not available for Python 3 in Arch (not even in the AUR!) 
 
 
