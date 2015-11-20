@@ -22,11 +22,11 @@ Add to `.xinitrc`:
 queried through Google. Also Eclipse doesn't need them.
 
 
-Eclipse (Mars)
+Eclipse
 -------
 **Core Installation**
 
-* Download and install in home directory:
+* Download *Eclipse IDE for Java Developers* and manually install in home directory:
 
         cd ~
         tar xzf eclipse-java-mars-1-linux-gtk-x86_64.tar.gz
@@ -46,12 +46,15 @@ Eclipse (Mars)
 * Show print margin (same dialog as above)
 * Define new Java formatter profile from existing "Java Conventions" to specify spaces
   only tab policy and tab width = 4: *... / Preferences / Java / Code Style / Formatter*
+* Initially fold comments: *Java / Editor / Folding*
 
 **Look & Feel**
 
 * Install plugin: Eclipse Color Theme; select Solarized Dark in *Window / Preferences
   / General / Appearance*
 * Set Monaco 13 for Text Editor and Text Block fonts: *... / Appearance / Colors and Fonts*
+* Set Alegreya 12 for Javadoc Display Font: *... / Appearance / Colors and Fonts*
+  (install Alegreya from AUR)
 
 **XMonad**
 
