@@ -37,7 +37,7 @@ Eclipse
   (`src.zip` should be picked up automatically; docs will be online)
 * Optionally install plugins: Data Tools Platform, Eclipse Java EE Developer
   Tools, Eclipse Web Developer Tools, JavaScript Development Tools, Maven
-  (Java EE) Integration for Eclipse WTP, TestNG.
+  (Java EE) Integration for Eclipse WTP, TestNG, EclEmma, CodeCity.
 
 **Text Editors**
 
