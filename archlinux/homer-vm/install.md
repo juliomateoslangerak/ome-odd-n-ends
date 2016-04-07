@@ -61,14 +61,12 @@ Tweak environment to change to Python 2 command:
 Install Python 2 libraries required for some OMERO server functionality:
 
     sudo pacman -S python2-numpy python2-matplotlib python2-pillow python2-pytables
+    sudo pip2 install -I Django==1.8.12
 
-**NOTES**
+###### NOTES
 1. OME scripts use Python 2. Invoking them with the Python 2 interpreter (`python2`) is
 not going to help because some of them call, in turn, other scripts that start with the
-following shebang:
-
-    #!/usr/bin/env python
-
+following shebang: `#!/usr/bin/env python`
 which would result in an error. The above tweak will make any such script use Python 2.
 2. Python 2's command is `/usr/bin/python2`, whereas Python 3's is `/usr/bin/python`.
 Same applies to pip: `pip2` and `pip`. Because of the above tweak, **Python 3 should not
@@ -83,6 +81,9 @@ wiki) or, even better, write a script to switch environments along the lines of
 explained above.
 6. Same for PyTables in `usr/bin`: `pt2to3-2.7`, `ptdump-2.7`, `ptrepack-2.7`,
 `pttree-2.7`.
+7. Django needs to be installed through `pip2` as OMERO doesn't support versions above
+`1.8`. There's a Pacman Django package for Python 2 is `python2-django` but it contains
+Django `1.9.5`.
 
 
 ICE
@@ -96,7 +97,7 @@ to remove all PHP and Python 3 related stuff, then:
   * `makepkg --pkg=zeroc-ice-java`
   * Install above packages (`zeroc-ice` first, then the others)
 
-**NOTES**
+###### NOTES
 1. C++. Tried to write Hello World app as per instructions in ICE manual, but failed to
 compile; didn't investigate further.
 2. Java. Building and running Hello World worked but following jar had to be added to
@@ -142,7 +143,7 @@ Install [pgAdmin][pgadmin] to manage the server:
 **XMonad**
 Add key binding: `("M-x d", spawn "pgadmin3")`
 
-**NOTES**
+###### NOTES
 1. Security. With the above configuration, Postgres will accept TCP connections from any
 host and any user provided they supply their MD5-encrypted password. Local users can still
 connect without password. (This is enabled by the default Postgres configuration.)
@@ -166,7 +167,7 @@ so just go ahead and hit the "Fix Me" button as suggested by the dialog instruct
 
     sudo systemctl enable nginx.service
 
-**NOTES**
+###### NOTES
 1. Security. Just fine for development, but needs to be hardened (e.g. systemd+chroot) for
 a production environment; also TSL/SSL needs to be installed and proper certificates used.
 Perhaps in production it would be better to run the Web server on another box altogether
@@ -194,8 +195,8 @@ convenience symlink:
     sudo chmod +rx /home/omero
     su omero
     cd ~
-    unzip OMERO.server-5.1.2-ice35-b45.zip
-    ln -s OMERO.server-5.1.2-ice35-b45 server
+    unzip OMERO.server-5.2.2-ice35-b17.zip
+    ln -s OMERO.server-5.2.2-ice35-b17 server
 
 **Environment Variables**
 Add the following to `/home/omero/.bashrc`:
@@ -225,7 +226,7 @@ Create the image repository:
     omero config set omero.db.user 'omero'
     omero config set omero.db.pass 'abc123'
     omero db script --password 'abc123'
-    psql -h localhost -U omero omero < OMERO5.1__1.sql
+    psql -h localhost -U omero omero < OMERO5.2__0.sql
 
 **Web Client**
 Generate the Nginx config file for OMERO Web:
@@ -248,7 +249,7 @@ Then comment out the default `server` block and restart Nginx:
     sudo systemctl restart nginx
 
 
-**NOTES**
+###### NOTES
 1. Server account. Creating a regular, unprivileged, user account to run the server is
 all we need for development, but not the best solution for production where a "server"
 account may be more appropriate. (e.g. no login shell, no home, etc.)
