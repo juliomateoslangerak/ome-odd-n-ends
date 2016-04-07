@@ -62,6 +62,7 @@ Install Python 2 libraries required for some OMERO server functionality:
 
     sudo pacman -S python2-numpy python2-matplotlib python2-pillow python2-pytables
     sudo pip2 install -I Django==1.8.12
+    sudo pip2 install gunicorn
 
 ###### NOTES
 1. OME scripts use Python 2. Invoking them with the Python 2 interpreter (`python2`) is
@@ -83,7 +84,7 @@ explained above.
 `pttree-2.7`.
 7. Django needs to be installed through `pip2` as OMERO doesn't support versions above
 `1.8`. There's a Pacman Django package for Python 2 is `python2-django` but it contains
-Django `1.9.5`.
+Django `1.9.5`. Ditto for Gunicorn.
 
 
 ICE
@@ -233,6 +234,7 @@ Generate the Nginx config file for OMERO Web:
 
     omero web config nginx > omero-web.conf
     sudo mv omero-web.conf /etc/nginx/
+    sudo pip2 install -r share/web/requirements-py27-nginx.txt
 
 Then edit `/etc/nginx/nginx.conf` to add the following lines in the `http` block:
 
