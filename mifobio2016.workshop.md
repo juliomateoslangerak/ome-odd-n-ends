@@ -33,16 +33,17 @@ share and publish imaging data. The following topics will be covered:
 
 1. Importing image and HCS data, including automatic import or importing on
 behalf of other users.
-2. Organising, viewing and annotating data with OMERO.insight and OMERO.web,
-automated tagging.
-3. Searching for data within OMERO.
-4. Exporting data: OME-TIFF, JPEG, original image, ROI's, measurements.
-5. Publishing data; creating figures for publication and sharing with
-OMERO.figure; reusing figures.
-6. Data analysis with OMERO scripts (Python, Matlab).
-7. Integration with ImageJ: image processing and visualisation.
-8. Overview of integration with other third-party applications: Matlab,
+2. Data analysis with OMERO scripts (Python, Matlab).
+3. Integration with ImageJ: image processing and visualisation of the
+original image data.
+4. Overview of integration with other third-party applications: Matlab,
 FLIMfit, CellProfiler, KNIME, Icy, Micro-Manager.
+5. Organising, viewing and annotating data with OMERO.insight and OMERO.web,
+automated tagging.
+6. Searching for data within OMERO.
+7. Exporting data: OME-TIFF, JPEG, original image, ROI's, measurements.
+8. Publishing data; creating figures for publication and sharing with
+OMERO.figure; reusing figures.
 9. Group and user management, including directory services and stand-alone
 systems.
 10. How to set up an OMERO server: prerequisites, example setups, costs.
