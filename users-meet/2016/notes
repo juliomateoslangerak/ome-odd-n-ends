@@ -1,0 +1,43 @@
+IDR = Image Data Repo
+=====================
+
+07:40 important to track which tools used for experiment, but not going to talk
+      about it here
+
+07:52 IDR => share & reuse *reference* image data sets.
+08:40 why share? royal society, welcome trust => availability of research data!
+09:34 sharing imaging data is very difficult:
+      - large amounts
+      - diversity: lots of different domains
+      - data acquired as part of specific experiment, with perturbations
+      - poorly standardised metadata
+      - possibly poorly annotated
+      - which data set to publish? (we don't publish our notebooks...)
+
+17:47 architecture diagram
+      - we work with gene-level similarities
+      - gene ontologies can be used to connect data from different studies;
+        output can be used for statistical analysis
+      - if we can reduce or convert imaging data from multiple studies into some
+        kind of annotated feature-set (e.g. polynomial to represent image
+        structure), then can we find similarities in terms of image structure,
+        dynamics, and components to deliver some measure of similarity?
+      - have no answer yet, but that's the basis for what we're trying to do
+
+23:40 big pharma: we could use this architecture to combine data from many data
+      sets and feed into ML algorithms for compound activity prediction
+      (ML need many integrated data sets to work well)
+
+24:40 architecture diagram
+      - collect lots of data
+      - extract all features most people would want
+      - make thumbnails + features available e.g. through web UI
+
+26:19 architecture diagram
+      - how to make data available for analysis though?
+      - downloading won't work (TB's!)
+      - make IDR available through Embassy: user runs their analysis in the
+        cloud using provided tools (Matlab, CellProfiler, Python, etc.)
+
+-------------------------------------------
+Web of Open Microscopy Environments (WOME!)
