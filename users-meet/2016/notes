@@ -38,6 +38,3 @@ IDR = Image Data Repo
       - downloading won't work (TB's!)
       - make IDR available through Embassy: user runs their analysis in the
         cloud using provided tools (Matlab, CellProfiler, Python, etc.)
-
--------------------------------------------
-Web of Open Microscopy Environments (WOME!)
