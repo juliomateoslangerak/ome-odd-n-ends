@@ -1,0 +1,52 @@
+quick status update
+-------------------
+* added more features to smuggler to keep mri happy, e.g. import batches
+
+* been away for almost 2 months all together, i think...
+
+* looking to get funded to do more work; avenues we're exploring
+
+  + comp-sci related grant---e.g. distributed ome fs; use of initial alg &
+    terminal coalg to implement a formal language in which to spec microscopy
+    file formats and automatically derive space/time efficient & parallel
+    parsers and writers
+
+  + biology project---as suggested by json; still need to talk w/ eduard as
+    every body busy w/ preps for mifobio in sept
+
+  + masters project, see below
+
+Masters project
+===============
+- mri gracefully agreed to cough up some money to fund one masters student for
+  6 months.
+- need a project he/she can do in that timeframe. 
+- the project will have to produce something mri can use
+- suggestions most welcome
+- at the mo, 2 options on the table
+
+1. omero.metrics
+- see julio's slides
+- self-contained, few things can go wrong.
+- only thing would be that ideally we need to be able to restrict access to
+  this add-on to facility managers only.
+
+2. integration of analysis scripts into our existing installation
+in order of increasing madness:
+
+1. extend balaji's work as we discussed already
+
+2. create a sandboxed env where to run analysis guis, e.g. icy, imagej, etc.
+   in a way they can access the omero repo directly without by-passing omero
+   permissions. user presses a button in the web, a plugin reads all users
+   permissions and sets up a container with a repo directory mirroring omero's
+   but only showing what the user can see; user then remote-desktops into vm.
+   kubernates, coreos, etc. vs vmware
+
+3. same as 2 but write costomised fs driver so that we could mount a fs that
+   shows the same p/d/i hierarchy as the one the user would see in the web ui
+
+
+---------------------------------
+re: permissions, jason suggested to look into
+* https://github.com/sorgerlab/OMERO.forms
