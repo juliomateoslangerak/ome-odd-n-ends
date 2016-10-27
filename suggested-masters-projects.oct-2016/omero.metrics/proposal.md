@@ -31,8 +31,7 @@ The former will be responsible for running standard analysis routines on
 acquired control images and store analysis results, while the latter will
 be fed those results to produce a number of reports in a Web user interface. 
 Both subsystems will operate on the data model mentioned above.
-
-- **TODO**: attach mockup?
+A mock-up of the reporting user interface is available [here][mockup].
 
 
 Extras
@@ -48,8 +47,8 @@ As a simple example, consider an XOR gate, the image of your face in the
 mirror and the following business rule: a customer should not submit an 
 order until they have entered a shipping address. What do all these things
 have in common? One possible answer is that they all exhibit the same kind
-of symmetry; in fact they can be modelled as [actions][actions] of the 
-cyclic group of order 2.
+of symmetry and this pattern is nicely captured by an algebraic model (the
+[actions][actions] of the cyclic group of order 2).
 Using an advanced functional programming language such as [Haskell][haskell],
 these algebraic models can then be readily turned into working programs
 that retain essential mathematical properties at the type-system level,
@@ -80,11 +79,13 @@ Interested candidates should contact:
 
 
 
-actions: https://en.wikipedia.org/wiki/Group_action
+[actions]: https://en.wikipedia.org/wiki/Group_action
     "Group action"
-haskell: https://haskell-lang.org/
+[haskell]: https://haskell-lang.org/
     "The Haskell programming language"
-ome: http://www.openmicroscopy.org/
+[ome]: http://www.openmicroscopy.org/
     "The Open Microscopy Environment"
-mri: https://www.mri.cnrs.fr/
+[mockup]: https://github.com/c0c0n3/ome-odd-n-ends/blob/master/suggested-masters-projects.oct-2016/omero.metrics/reports.mockup.png
+    "Microscope performance monitor - Reports UI mock-up"
+[mri]: https://www.mri.cnrs.fr/
     "Montpellier RIO Imaging"
