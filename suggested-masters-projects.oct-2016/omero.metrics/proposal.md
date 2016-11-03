@@ -36,28 +36,24 @@ A mock-up of the reporting user interface is available [here][mockup].
 
 Extras
 ------
-The intern is obviously free to use whichever approach to programming they 
-prefer, e.g. object-oriented analysis and design, etc.
-However, we routinely use abstract algebra and functional programming as a 
-means to specify, construct, transform, verify and reason about programs.
-So there is an opportunity for the intern to gain some exposure to these
-techniques and use them in practice to engineer a real-world application.
+We routinely use abstract algebra and functional programming as a means to
+specify, construct, transform, verify and reason about programs. 
+If this approach to programming is appealing to the intern, we can provide
+them with suitable training in order to be able to use these techniques in
+their work. Otherwise they are free to use whichever approach to programming 
+they are already comfortable with, e.g. object-oriented analysis and design.
 
-As a simple example, consider an XOR gate, the image of your face in the 
-mirror and the following business rule: a customer should not submit an 
-order until they have entered a shipping address. What do all these things
-have in common? One possible answer is that they all exhibit the same kind
-of symmetry and this pattern is nicely captured by an algebraic model (the
-[actions][actions] of the cyclic group of order 2).
+As a simple example of algebraic modelling, consider an XOR gate, the image
+of your face in the mirror and the following business rule: a customer should
+not submit an order until they have entered a shipping address. What do all 
+these things have in common? One possible answer is that they all exhibit the
+same kind of symmetry and this pattern is nicely captured by an algebraic model
+(the [actions][actions] of the cyclic group of order 2).
 Using an advanced functional programming language such as [Haskell][haskell],
 these algebraic models can then be readily turned into working programs
 that retain essential mathematical properties at the type-system level,
 so that the programmer can reason mathematically about the code and the
 compiler can verify program correctness.
-
-If this approach to programming is appealing to the intern, we will provide
-them with suitable training in order to be able to use algebraic modelling 
-and functional programming in their work.
 
 
 Contact Details
