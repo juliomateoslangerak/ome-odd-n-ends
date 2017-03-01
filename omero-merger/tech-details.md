@@ -41,16 +41,24 @@ further and develop a proper token system for long running OMERO tasks.
 What next?
 
 + web import?
-+ import performance. I've written up some notes about it ways to deal with
++ import performance. I've written up some notes about ways to deal with
 a large import object graph outside of a single big honking transaction while
 still ensuring eventual data consistency...Going to look for my notes and
 add it here...
 + what else? think all the above is already way more than a man-year worth
 of development?!
 
+### Notes
+Sometimes I have wild dreams of an OMERO distributed file system to sort
+out once for all: Luke's straw, data import/export, security, federated
+repos. But when I wake up I realise this is madness. Anyhoo, I've collected
+my brain farts [over here][crazy].
 
 
 
+
+[crazy]: crazy-ideas.md
+    "Crazy Ideas"
 [high-view]: http://c0c0n3.github.io/ome-smuggler/docs/content/design/high-level/index.html
     "High-level View"
 [messaging]: http://c0c0n3.github.io/ome-smuggler/docs/content/design/messaging/index.html

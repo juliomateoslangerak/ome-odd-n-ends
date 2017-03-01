@@ -28,7 +28,7 @@ Even if no other imaging facility out there (besides MRI) needed background
 imports (which I doubt!), the maintenance burden on you guys would be
 negligible, also taking into account that
 
-* Smuggler's well documented ([docs site][docs-site], [JavaDoc][javadoc]]),
+* Smuggler's well documented ([docs site][docs-site], [JavaDoc][javadoc]),
 tested ([Codecov][codecov]), and comes with a fully automated build/test/release
 cycle ([Travis CI][travis]).
 * We could use background imports to enable imports in the Web client,
