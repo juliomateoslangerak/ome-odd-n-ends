@@ -62,12 +62,11 @@ system;
 execute tasks;
 * a REST front-end to expose this functionality.
 
-OME
----
-software suite, an open-source platform for the storage, transfer, management,
-visualisation, analysis, sharing and publication of image data and metadata.
-
-From image acquisition to publication, OME provides the infrastructure needed
+About OME & OMERO
+-----------------
+The OME Consortium develops OMERO, an open-source software suite for the
+storage and manipulation of biological microscopy data.
+From image acquisition to publication, OMERO provides the infrastructure
 to manage the entire process in an automated, secure, and reliable fashion,
 catering for the storage, transfer, management, visualisation, analysis,
 sharing and publication of image data and metadata.
