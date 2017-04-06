@@ -45,8 +45,8 @@ Challenges
 
 A scalable and resilient architecture
 -------------------------------------
-We have overcome these challenges with a message-message driven architecture
-whose core is made up of
+We have overcome these challenges with a message-driven architecture whose
+core is made up of
 
 * a generic, strongly-typed messaging API with pluggable backing queueing
 system;
@@ -62,8 +62,8 @@ freely available on GitHub:
 * [Code](https://github.com/c0c0n3/ome-smuggler) 
 * [Docs](http://c0c0n3.github.io/ome-smuggler)
 
-About OME & OMERO
------------------
+About OMERO
+-----------
 The OME Consortium develops OMERO, an open-source software suite for the
 storage and manipulation of biological microscopy data.
 From image acquisition to publication, OMERO provides the infrastructure
