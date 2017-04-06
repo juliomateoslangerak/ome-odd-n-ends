@@ -34,14 +34,6 @@ enough to be used for other data transfer and management tasks (e.g. FTP,
 OMERO mass delete), to integrate heterogeneous applications, or as the
 backbone of a task server.
 
-Repo
-----
-All our work, from design blueprints to source code, is open-source and
-freely available on GitHub:
-
-* [Code](https://github.com/c0c0n3/ome-smuggler) 
-* [Docs](http://c0c0n3.github.io/ome-smuggler)
-
 Challenges
 ----------
 * stay responsive without interferring with running acquisitions
@@ -62,6 +54,14 @@ system;
 execute tasks;
 * a REST front-end to expose this functionality.
 
+Availability
+------------
+All our work, from design blueprints to source code, is open-source and
+freely available on GitHub:
+
+* [Code](https://github.com/c0c0n3/ome-smuggler) 
+* [Docs](http://c0c0n3.github.io/ome-smuggler)
+
 About OME & OMERO
 -----------------
 The OME Consortium develops OMERO, an open-source software suite for the
@@ -71,4 +71,4 @@ to manage the entire process in an automated, secure, and reliable fashion,
 catering for the storage, transfer, management, visualisation, analysis,
 sharing and publication of image data and metadata.
 
-- [www.openmicroscopy.org](http://www.openmicroscopy.org/)
+* [www.openmicroscopy.org](http://www.openmicroscopy.org/)
