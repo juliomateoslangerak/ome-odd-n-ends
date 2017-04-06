@@ -30,8 +30,9 @@ for the time that it takes to transfer their image data into OMERO.
 The application is grounded on a reactive architecture designed with
 scalability and resilience in mind in order to cope effectively with large
 data volumes and workloads. This Web-based, message-driven design is generic
-enough to be used for other data transfer (e.g. FTP) or OMERO-related tasks,
-to integrate heterogeneous applications, or as the basis for a task server.
+enough to be used for other data transfer and management tasks (e.g. FTP,
+OMERO mass delete), to integrate heterogeneous applications, or as the
+backbone of a task server.
 
 Repo
 ----
@@ -49,6 +50,17 @@ Challenges
 * provide back-pressure mechanism to avoid OMERO overload
 * ensure outcome notifications
 * scale horizontally to dozens of machines
+
+A scalable and resilient architecture
+-------------------------------------
+We have overcome these challenges with a message-message driven architecture
+whose core is made up of
+
+* a generic, strongly-typed messaging API with pluggable backing queueing
+system;
+* a run/retry/notify infrastructure built on top of it to schedule and
+execute tasks;
+* a REST front-end to expose this functionality.
 
 OME
 ---
