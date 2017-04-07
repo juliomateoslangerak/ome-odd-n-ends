@@ -56,8 +56,11 @@ execute tasks;
 
 Availability
 ------------
-All our work, from design blueprints to source code, is open-source and
-freely available on GitHub:
+The server software is available as a Linux daemon, Windows service, or
+as a generic distribution bundle. Moreover, we have released an OMERO
+client (a fork of OMERO.Insight) that uses our server to import data
+into OMERO in the background. From design blueprints to source code,
+all our work is open-source and freely available on GitHub.
 
 * [Code](https://github.com/c0c0n3/ome-smuggler) 
 * [Docs](http://c0c0n3.github.io/ome-smuggler)
@@ -72,3 +75,16 @@ catering for the storage, transfer, management, visualisation, analysis,
 sharing and publication of image data and metadata.
 
 * [www.openmicroscopy.org](http://www.openmicroscopy.org/)
+
+Future work
+-----------
+TODO
+
+Acknowledgements
+----------------
+We are indebted to Jean-Marie Burel who designed and released a prototype
+of the `OMERO.Insight` client to use our software for offline import.
+Jean-Marie Burel, Josh Moore, and Sebastien Besson provided us with much
+needed guidance around the inner workings of the OMERO platform as well as
+countless useful suggestions.
+
