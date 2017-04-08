@@ -22,7 +22,7 @@ are run on behalf of OMERO users but outside of their login sessions which
 allows a user to log on an acquisition workstation, trigger the import and
 then immediately log out without having to wait for the image data being
 transferred out of the workstation into the OMERO repository. Thus, the
-workstation (and the microscope) becomes immediately available to the next
+workstation and the microscope become immediately available to the next
 user. Moreover, if users are billed for the time that they are logged on an
 acquisition workstation, this new server application avoids the user paying
 for the time that it takes to transfer their image data into OMERO.
@@ -36,7 +36,7 @@ backbone of a task server.
 
 Challenges
 ----------
-* stay responsive without interferring with running acquisitions
+* stay responsive without interfering with running acquisitions
 * reliably import large data sets
 * overcome transient failures
 * provide back-pressure mechanism to avoid OMERO overload
@@ -78,13 +78,28 @@ sharing and publication of image data and metadata.
 
 Future work
 -----------
-TODO
+We are in the process of merging our work into the OMERO mainline. Background
+import functionality will be available in a future OMERO release and will
+also be used to enable OMERO Web-based imports. Messaging infrastructure
+will initially be integrated into the Image Data Repository (IDR) project
+and subsequently into the OMERO mainline.
 
 Acknowledgements
 ----------------
 We are indebted to Jean-Marie Burel who designed and released a prototype
 of the `OMERO.Insight` client to use our software for offline import.
-Jean-Marie Burel, Josh Moore, and Sebastien Besson provided us with much
-needed guidance around the inner workings of the OMERO platform as well as
-countless useful suggestions.
+Jean-Marie Burel, Josh Moore, Sebastien Besson and the rest of the OMERO
+team provided us with much needed guidance around the inner workings of
+the OMERO platform as well as countless useful suggestions.
+
+References
+----------
+Chris Allan, Jean-Marie Burel, Josh Moore, Colin Blackburn, Melissa Linkert,
+Scott Loynton, Donald MacDonald, William J Moore, Carlos Neves, Andrew Patterson,
+Michael Porter, Aleksandra Tarkowska, Brian Loranger, Jerome Avondo,
+Ingvar Lagerstedt, Luca Lianas, Simone Leo, Katherine Hands, Ron T Hay,
+Ardan Patwardhan, Christoph Best, Gerard J Kleywegt, Gianluigi Zanetti &
+Jason R Swedlow (2012)
+*OMERO: flexible, model-driven data management for experimental biology.*
+Nature Methods 9, 245–253. Published: 28 February 2012
 
