@@ -15,10 +15,10 @@ runCommand "dummy"
     [ python27 ] ++        # 2.7.13
     (with python27Packages; [
       django               # 1.10.7
-     	pillow               # 3.4.2
-     	matplotlib           # 2.0.0
+      pillow               # 3.4.2
+      matplotlib           # 2.0.0
       numpy                # 1.11.3
-     	tables               # 3.2.2
+      tables               # 3.2.2
     ]);
 
   shellHook = ''
