@@ -5,7 +5,11 @@
 #     $ nix-shell omero-5.3-build.nix
 #
 with import <nixpkgs> {};  # 17.03    NOTE (1)
+with import ./prompt.nix;
 
+let
+  shell-name = "omero-5.3-build";
+in
 runCommand "dummy"
 {
 
@@ -22,6 +26,7 @@ runCommand "dummy"
     ]);
 
   shellHook = ''
+    ${setPrompt { inherit shell-name; }}
     export SLICEPATH="${zeroc_ice}/slice"
   '';
 
