@@ -1,0 +1,21 @@
+[16:24] <c0c0n3> hi guys, have a quick question re: imperative containers
+[16:25] <c0c0n3> how can I mount a host directory into the container?
+[16:26] <c0c0n3> it looks like nixos is using systemd-nspawn under the bonnet
+[16:26] <c0c0n3> which lets you do that with --bind
+[16:27] <c0c0n3> is that option available thru the nixos commands?
+
+[16:30] <goibhniu> c0c0n3: you can certainly configure bind mounts into the
+  container at the configuration.nix level if that helps
+
+[16:31] <c0c0n3> goibhniu: hi, you mean the container's configuration.nix?
+
+[16:31] <goibhniu> sorry, I mean on the host
+
+[16:31] <c0c0n3> oh right, but how?
+[16:31] <goibhniu> fileSystems."/var/lib/containers/mycontainer/etc/nixos/goibhnix" = {device = "/etc/goibhnix/configurations"; options = [ "bind" ];};
+
+[16:31] <c0c0n3> thru fileSystems?
+
+[16:32] <c0c0n3> goibhniu: excellent! thank you a stack!
+
+[16:32] <goibhniu> glad to help!
