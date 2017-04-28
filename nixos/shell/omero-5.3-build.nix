@@ -1,5 +1,8 @@
 #
 # Nix expression to set up an OMERO 5.3 build environment.
+# You can only use this environment to build the OMERO components with the
+# `build.py` script. If you also need to run OMERO apps as you develop, use
+# `omero-5.3.-dev.nix` instead.
 # Use with `nix-shell` on NixOS 17.03:
 #
 #     $ nix-shell omero-5.3-build.nix
@@ -13,17 +16,12 @@ in
 runCommand "dummy"
 {
 
-  buildInputs =
-    [ jdk ] ++             # openjdk-8u121b13
-    [ zeroc_ice ] ++       # 3.6.3
-    [ python27 ] ++        # 2.7.13
-    (with python27Packages; [        # NOTE (2)
-      django               # 1.10.7
-      pillow               # 3.4.2
-      matplotlib           # 2.0.0
-      numpy                # 1.11.3
-      tables               # 3.2.2
-    ]);
+  buildInputs = with python27Packages; [
+    jdk         # openjdk-8u121b13
+    zeroc_ice   # 3.6.3
+    python27    # 2.7.13
+    setuptools  # 30.2.0              NOTE (2)
+  ];
 
   shellHook = ''
     ${setPrompt { inherit shell-name; }}
@@ -48,7 +46,16 @@ runCommand "dummy"
 # See:
 # - https://github.com/NixOS/nixpkgs/issues/9682
 #
-# 2. OMERO Python Deps. I've managed to run successfully `python build.py`
-# and `python build.py release-clients` with just `setuptools` (30.2.0)
-# without all the other Python packages which I think are runtime but not
-# build deps?
+# 2. OMERO Python Deps. I've managed to run successfully these build tasks
+#
+#     python build.py
+#     python build.py release-clients
+#     python build.py clean
+#
+# with just `setuptools` without all the other Python packages mentioned
+# in the OMERO docs:
+# - http://www.openmicroscopy.org/site/support/omero5.3/developers/installation.html#building-omero
+# Probably most of those packages are actually only runtime but not build
+# deps?
+# Anyhoo, other build tasks may require additional packages, you can find
+# the whole lot in `omero-5.3-dev.nix`.
