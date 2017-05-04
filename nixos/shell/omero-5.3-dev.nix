@@ -7,7 +7,7 @@
 #     $ nix-shell omero-5.3-dev.nix
 #
 with import <nixpkgs> {};  # 17.03    NOTE (1)
-with import ./prompt.nix;
+with import ./util.nix;
 
 let
   shell-name = "omero-5.3-dev";
@@ -39,10 +39,7 @@ runCommand "dummy"
     gunicorn     # 19.3.0
   ];
 
-  shellHook = ''
-    ${setPrompt { inherit shell-name; }}
-    export SLICEPATH="${zeroc_ice}/slice"
-  '';
+  shellHook = setShellHook { inherit shell-name zeroc_ice; };
 
 } ""
 # Notes
