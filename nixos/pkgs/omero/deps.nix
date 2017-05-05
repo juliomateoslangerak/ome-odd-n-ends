@@ -13,9 +13,11 @@ rec {
     assert zeroc-ice-py.version == pkgs.zeroc_ice.version;
     pyenv [
       django
+      django-pipeline
       gunicorn
       matplotlib
       numpy
+      omero-marshal
       pillow
       tables
       zeroc-ice-py

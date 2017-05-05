@@ -25,20 +25,33 @@ in {
   pyenv = ps: with-pkgs (xs: ps);
   # NB we discard xs so to only use the packages declared in this file.
 
-  zeroc-ice-py = callPackage ./zeroc-ice-py.nix {  # 3.6.3
+  zeroc-ice-py = callPackage ./zeroc-ice-py.nix {    # 3.6.3
+    buildPythonPackage = build-pykg;
+  };
+
+  omero-marshal = callPackage ./omero-marshal.nix {  # 0.5.1
     buildPythonPackage = build-pykg;
   };
 
   pillow = pykgs.pillow.overrideAttrs (oldAttrs: rec {
     name = "Pillow-${version}";
-    version = "3.3.3";
+    version = "3.3.3";            # 3.4.2 in NixOS 17.09
     src = fetchurl {
       url = "mirror://pypi/P/Pillow/${name}.tar.gz";
       sha256 = "0xkv0p1d73gz0a1qaasf0ai4262g8f334j07vd60bjrxs2wr3nmj";
     };
   });
 
-  django = pykgs.django;          # 1.10.7
+  django-pipeline = pykgs.django_pipeline.overrideAttrs (oldAttrs: rec {
+    name = "django-pipeline-${version}";
+    version = "1.3.20";           # 1.5.1 in NixOS 17.09
+    src = pkgs.fetchurl {
+      url = "mirror://pypi/d/django-pipeline/${name}.tar.gz";
+      sha256 = "1iv14s4d7ndazm5gmhhr61m9mlcfd2q1d3r932zsid57j88p3r09";
+    };
+  });
+
+  django = pykgs.django_1_8;      # 1.8.18 (but pykgs.django: 1.10.7)
   gunicorn = pykgs.gunicorn;      # 19.3.0
   matplotlib = pykgs.matplotlib;  # 2.0.0
   numpy = pykgs.numpy;            # 1.11.3
