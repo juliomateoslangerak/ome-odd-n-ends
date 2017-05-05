@@ -1,5 +1,6 @@
 #
-# Nix expression to set up an OMERO 5.3 dev environment.
+# Nix expression to set up an OMERO dev environment for the latest OMERO
+# release in our Nix packages.
 # You can use this environment both to build and run OMERO apps from the
 # command line.
 # Use with `nix-shell` on NixOS 17.03:
@@ -8,36 +9,15 @@
 #
 with import <nixpkgs> {};  # 17.03    NOTE (1)
 with import ./util.nix;
+with import ../pkgs { inherit pkgs lib; };
 
 let
-  shell-name = "omero-5.3-dev";
+  shell-name = "omero-dev";
 in
 runCommand "dummy"
 {
 
-  buildInputs = with python27Packages; [
-    # OMERO runtime doesn't need the whole JDK, the JRE is enough.
-    jdk         # openjdk-8u121b13
-
-    # ICE for OMERO 5.3
-    zeroc_ice   # 3.6.3
-
-    # OMERO base Python deps.
-    python27    # 2.7.13
-    django      # 1.10.7
-    pillow      # 3.4.2
-    matplotlib  # 2.0.0
-    numpy       # 1.11.3
-    tables      # 3.2.2
-
-    # Movie Maker (OMERO.scripts) needs `mencoder` but NixOS doesn't package
-    # it separately from MPlayer.
-    mplayer      # 1.3.0
-
-    # OMERO.web additional deps.
-    nginx        # 1.10.3
-    gunicorn     # 19.3.0
-  ];
+  buildInputs = omero.deps.dev;
 
   shellHook = setShellHook { inherit shell-name zeroc_ice; };
 

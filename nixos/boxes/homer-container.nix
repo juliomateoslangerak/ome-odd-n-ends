@@ -3,6 +3,7 @@
 { config, lib, pkgs, ... }:
 
 with lib;
+with import ../pkgs { inherit pkgs lib; };
 
 {
 
@@ -11,11 +12,13 @@ with lib;
 #  networking.useDHCP = false;
 
   imports = [
-    ../pkgs
+    ../modules
   ];
 
-  environment.systemPackages = with pkgs; with config.pkgs; [
-    omero-server
-  ];
+  ext.users.admins = [ "andrea" ];
+
+  environment.systemPackages = [
+    omero.server
+  ] ++ omero.deps.dev;
 
 }

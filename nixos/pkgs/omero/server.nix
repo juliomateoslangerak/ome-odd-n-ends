@@ -1,7 +1,9 @@
 #
 # OMERO 5.3 package for NixOS 17.03.
 #
-with import <nixpkgs> {};  # 17.03
+{ stdenv, pkgs, lib, ... }:
+
+with pkgs;
 
 stdenv.mkDerivation rec {
 

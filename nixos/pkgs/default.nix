@@ -1,25 +1,16 @@
 #
-# Puts together all our custom packages so we can bring them all into scope
-# with a single import in the root machine config file.
+# Puts together all our custom packages.
 #
-{ config, lib, pkgs, ... }:
+{ pkgs, ... }:
 
-with lib;
-with types;
-{
+with pkgs;
 
-  options = {
-    pkgs = mkOption {
-      type = attrsOf package;
-      default = {};
-      description = ''
-        All our custom packages.
-      '';
-    };
+rec {
+
+  zeroc-ice-py = callPackage ./zeroc-ice.python.nix {
+    buildPythonPackage = python27Packages.buildPythonPackage;
   };
 
-  config = {
-    pkgs.omero-server = import ./omero.server-5.3.nix;
-  };
+  omero = callPackage ./omero { inherit zeroc-ice-py; };
 
 }
