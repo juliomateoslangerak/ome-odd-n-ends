@@ -8,15 +8,18 @@
 rec {
 
   # Python env to run OMERO server, web and CLI tools.
-  py-runtime = with pykgs; pyenv [ #                NOTE (2)
-    django
-    gunicorn
-    matplotlib
-    numpy
-    pillow
-    tables
-    zeroc-ice-py
-  ];
+  py-runtime =              #                       NOTE (2)
+    with pykgs;
+    assert zeroc-ice-py.version == pkgs.zeroc_ice.version;
+    pyenv [
+      django
+      gunicorn
+      matplotlib
+      numpy
+      pillow
+      tables
+      zeroc-ice-py
+    ];
 
   # Packages required to run OMERO server, web and CLI tools.
   runtime = with pkgs; [
