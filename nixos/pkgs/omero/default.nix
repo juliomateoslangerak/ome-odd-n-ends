@@ -1,10 +1,7 @@
-{ pkgs, zeroc-ice-py, ... }:
+{ pkgs, pykgs, ... }:
 
 with pkgs;
-
 {
-
-  deps = callPackage ./deps.nix { inherit zeroc-ice-py; };
+  deps = callPackage ./deps.nix { inherit pykgs; };
   server = callPackage ./server.nix {};
-
 }
