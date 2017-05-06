@@ -7,10 +7,11 @@
 
 with pkgs;
 let
-  pykgs = python27Packages;  # Python 2.7.13
+  python = python27;         # Python 2.7.13
+  pykgs = python27Packages;  # Python lib 2.7.13
   build-pykg = pykgs.buildPythonPackage;
   with-pkgs = python27.withPackages;              # NOTE (2)
-in {
+in rec {
 
   # Utility to assemble a Python environment with the specified list of
   # packages from our OMERO package set.
@@ -31,6 +32,11 @@ in {
 
   omero-marshal = callPackage ./omero-marshal.nix {  # 0.5.1
     buildPythonPackage = build-pykg;
+  };
+
+  omero-py = callPackage ./omero-py.nix {  # 5.3.1
+    buildPythonPackage = build-pykg;
+    inherit python zeroc-ice-py;
   };
 
   pillow = pykgs.pillow.overrideAttrs (oldAttrs: rec {
