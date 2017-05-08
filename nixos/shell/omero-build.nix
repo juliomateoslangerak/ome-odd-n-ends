@@ -4,7 +4,7 @@
 # You can only use this environment to build the OMERO components with the
 # `build.py` script. If you also need to run OMERO apps as you develop, use
 # `omero-dev.nix` instead.
-# Use with `nix-shell` on NixOS 17.03:
+# Usage:
 #
 #     $ nix-shell omero-build.nix
 #
@@ -14,6 +14,7 @@ with import ../pkgs { inherit pkgs lib; };
 
 let
   shell-name = "omero-build";
+  zeroc_ice = omero.packages.zeroc_ice;
 in
 runCommand "dummy"
 {

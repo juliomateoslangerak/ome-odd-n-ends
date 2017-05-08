@@ -1,7 +1,9 @@
 { pkgs, pykgs, ... }:
 
 with pkgs;
-{
-  deps = callPackage ./deps.nix { inherit pykgs; };
-  server = callPackage ./server.nix {};
+rec {
+
+  packages = callPackage ./pkgs.nix { inherit pykgs; };
+  deps = callPackage ./deps.nix { omero-pkgs = packages; };
+
 }

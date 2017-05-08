@@ -3,9 +3,9 @@
 # release in our Nix packages.
 # You can use this environment both to build and run OMERO apps from the
 # command line.
-# Use with `nix-shell` on NixOS 17.03:
+# Usage:
 #
-#     $ nix-shell omero-5.3-dev.nix
+#     $ nix-shell omero-dev.nix
 #
 with import <nixpkgs> {};  # 17.03    NOTE (1)
 with import ./util.nix;
@@ -13,6 +13,7 @@ with import ../pkgs { inherit pkgs lib; };
 
 let
   shell-name = "omero-dev";
+  zeroc_ice = omero.packages.zeroc_ice;
 in
 runCommand "dummy"
 {

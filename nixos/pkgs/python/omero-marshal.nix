@@ -6,7 +6,7 @@
 # This Nix package works with Python 2.7 but not 2.6. Might work with
 # Python 3 too, but I haven't tested it.
 #
-{ pkgs, lib, buildPythonPackage }:
+{ pkgs, lib, buildPythonPackage, omero-py }:
 
 with pkgs;
 with lib;
@@ -35,6 +35,8 @@ buildPythonPackage rec {
     sha256 = "14gwxp53r027n9s60vv988yv6sqjmbrjn9q3c2i8dlpqhaa9xjcl";
   };
 
+  propagatedBuildInputs = [ omero-py ];  # NOTE (1)
+
   # NOTE (2)
   prePatch = ''
     substituteInPlace requirements.txt --replace "importlib>=1.0.1" ""
@@ -45,11 +47,16 @@ buildPythonPackage rec {
 }
 # Notes
 # -----
-# 1. OmeroPy Dependency. TODO! The code in omero_marshal depends on the
-# OMERO Python bindings:
-# - http://www.openmicroscopy.org/site/support/omero5.3/developers/Python.html
-# So to use the lib you should set your PYTHONPATH as documented above.
-# I should Nixify OmeroPy too though at some point...
+# 1. OmeroPy Dependency. `omero-marshal` has runtime dependencies both on
+# OmeroPy and the ICE Python bindings. This is why we list `omero-py` in
+# `propagatedBuildInputs`---in turn, `omero-py` adds ICE, so we get both.
+# Then when you add `omero-marshal` to your Python environment (e.g. using
+# `withPackages`), you'll get all three packages. Happiness? Yes, unless
+# you want to use the same Python environment to run `bin/omero` from the
+# OMERO.server package which already contains all of OmeroPy (in `lib/python`).
+# Now `bin/omero` automatically adds its `lib/python` to the PYTHONPATH,
+# so you have to make sure the OmeroPy that `omero-marshal` brings in is
+# the same as the one in OMERO.server's `lib/python`.
 #
 # 2. importlib. Back-port of Python 3 import functionality but it only works
 # with Python 2.6 not with 2.7. For the moment I'm only using Python 2.7, so
@@ -62,7 +69,8 @@ buildPythonPackage rec {
 # See:
 # - https://pip.pypa.io/en/stable/reference/pip_install/#requirement-specifiers
 #
-# 3. Tests. Won't run because of the dependency on OmeroPy, see (1).
-# Disabling the running of the test suite until I put together a Nix
-# package for OmeroPy too.
+# 3. Tests. Can't get them to work. Even after adding `omero-py` and `pytest`
+# to my `buildInputs`, I still get a "no tests ran" message and the build
+# fails. Not sure what the hell is going on here, so I'm disabling the running
+# of the test suite for the moment...
 #

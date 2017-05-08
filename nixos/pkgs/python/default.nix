@@ -3,13 +3,13 @@
 # Most of them are overrides of existing Nix Python packages since OMERO
 # needs specific versions older than the current ones in Nixpkgs.
 #
-{ pkgs, ... }:  # 17.09                             NOTE (1)
+{ pkgs, ... }:  # 17.03                             NOTE (1)
 
 with pkgs;
 let
   python = python27;         # Python 2.7.13
   pykgs = python27Packages;  # Python lib 2.7.13
-  build-pykg = pykgs.buildPythonPackage;
+  buildPythonPackage = pykgs.buildPythonPackage;
   with-pkgs = python27.withPackages;              # NOTE (2)
 in rec {
 
@@ -27,16 +27,15 @@ in rec {
   # NB we discard xs so to only use the packages declared in this file.
 
   zeroc-ice-py = callPackage ./zeroc-ice-py.nix {    # 3.6.3
-    buildPythonPackage = build-pykg;
+    inherit buildPythonPackage;
   };
 
   omero-marshal = callPackage ./omero-marshal.nix {  # 0.5.1
-    buildPythonPackage = build-pykg;
+    inherit buildPythonPackage omero-py;
   };
 
   omero-py = callPackage ./omero-py.nix {  # 5.3.1
-    buildPythonPackage = build-pykg;
-    inherit python zeroc-ice-py;
+    inherit python buildPythonPackage zeroc-ice-py;
   };
 
   pillow = pykgs.pillow.overrideAttrs (oldAttrs: rec {
@@ -50,7 +49,7 @@ in rec {
 
   django-pipeline = pykgs.django_pipeline.overrideAttrs (oldAttrs: rec {
     name = "django-pipeline-${version}";
-    version = "1.3.20";           # 1.5.1 in NixOS 17.09
+    version = "1.3.20";           # 1.5.1 in NixOS 17.03
     src = pkgs.fetchurl {
       url = "mirror://pypi/d/django-pipeline/${name}.tar.gz";
       sha256 = "1iv14s4d7ndazm5gmhhr61m9mlcfd2q1d3r932zsid57j88p3r09";
@@ -69,7 +68,7 @@ in rec {
 # -----
 # 1. Version Numbers. For packages that we haven't overridden, the version
 # numbers noted next to each package name refer to the packages in NixOS
-# 17.09. But you can obviously pass in a `pkgs` argument that points to a
+# 17.03. But you can obviously pass in a `pkgs` argument that points to a
 # different NixOS package set, in which case the version numbers could be
 # different.
 #
