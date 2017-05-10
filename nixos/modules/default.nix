@@ -1,5 +1,6 @@
 {
   imports = [
+    ./omero
     ./users.nix
   ];
 }

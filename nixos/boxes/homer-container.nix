@@ -17,8 +17,10 @@ with import ../pkgs { inherit pkgs lib; };
 
   ext.users.admins = [ "andrea" ];
 
+  omero.server.enable = true;
+
   environment.systemPackages = [
-    omero.server
+    omero.packages.server
   ] ++ omero.deps.dev;
 
 }
