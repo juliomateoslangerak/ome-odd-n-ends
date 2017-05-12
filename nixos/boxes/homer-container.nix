@@ -4,7 +4,6 @@
 
 with lib;
 with import ../pkgs { inherit pkgs lib; };
-
 {
 
 #  boot.isContainer = true;
@@ -17,7 +16,13 @@ with import ../pkgs { inherit pkgs lib; };
 
   ext.users.admins = [ "andrea" ];
 
-  omero.server.enable = true;
+  omero = {
+    server.enable = true;
+    db.enable = true;
+    db.user.name = "omero";  # TODO why can't I just override the password?
+    db.user.password = "abc123";
+    users.root.password = "abc123";
+  };
 
   environment.systemPackages = [
     omero.packages.server

@@ -1,6 +1,7 @@
 {
   imports = [
-    ./server-user.nix
+    ./db.nix
+    ./server-users.nix
     ./server.nix
   ];
 }
