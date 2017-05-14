@@ -3,6 +3,7 @@
 # IMPORTANT: read NOTE (1) before using!!!
 #
 { pkgs,
+  postgres,  # our version that goes with OMERO
   omero-server,
   omero-runtime-deps,
   db-user ? "omero",
@@ -36,6 +37,14 @@ let
            OWNER ${toPgSlqQuotedIdentifier db-user}
            ENCODING 'UTF8';
   '';
+
+  omero-db-bootstrap = "omero-db-bootstrap";
+  omero-db-bootstrap-src = writeScript "omero-db-bootstrap" ''
+    #!${bash}/bin/bash -e
+    dir="$(dirname -- "$0")";
+    echo ">>>>>>>>>>>>>>>: $dir";
+    ls $dir
+  '';
 in
 stdenv.mkDerivation rec {
 
@@ -52,7 +61,7 @@ stdenv.mkDerivation rec {
 
   src = omero-server.src;  # NOTE (2)
 
-  buildInputs = [ unzip ] ++ omero-runtime-deps;
+  buildInputs = [ unzip postgres ] ++ omero-runtime-deps;
 
   phases = [ "unpackPhase" "buildPhase" "installPhase" ];
 
@@ -66,6 +75,7 @@ stdenv.mkDerivation rec {
     INST_DIR=$out/sql
     mkdir -p $INST_DIR
 
+    ln -s ${omero-db-bootstrap-src} $INST_DIR/${omero-db-bootstrap}
     ln -s ${create-script-src} $INST_DIR/${create-script}
     cp ${init-script} $INST_DIR/
   '';

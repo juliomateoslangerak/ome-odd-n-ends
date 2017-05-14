@@ -6,6 +6,7 @@ rec {
   packages = (callPackage ./pkgs.nix { inherit pykgs; })
   // {
     db.bootstrap = callPackage ./db-bootstrap.nix {
+      postgres = packages.postgres;
       omero-server = packages.server;
       omero-runtime-deps = deps.dev;
     };
