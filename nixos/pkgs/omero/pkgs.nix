@@ -18,6 +18,7 @@ assert pykgs.omero-py.release == server.release;  # NOTE (2)
   jdk = pkgs.jdk;               # openjdk-8u121b13
   jre = pkgs.jre;               # openjre-8u131b11
   mencoder = pkgs.mplayer;      # 1.3.0             NOTE (3)
+  postgres = pkgs.postgresql;   # 9.5.6
   inherit server;
   zeroc_ice = pkgs.zeroc_ice;   # 3.6.3
 }
