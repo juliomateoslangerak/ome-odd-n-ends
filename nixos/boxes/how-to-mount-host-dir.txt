@@ -19,3 +19,16 @@
 [16:32] <c0c0n3> goibhniu: excellent! thank you a stack!
 
 [16:32] <goibhniu> glad to help!
+
+
+====================================
+The above didn't work for me. After looking at
+- https://github.com/NixOS/nixpkgs/blob/release-17.03/nixos/modules/virtualisation/containers.nix
+I've found a quick workaround: specify the mount point in
+- /etc/containers/homer.conf
+with e.g.
+
+   EXTRA_NSPAWN_FLAGS=--bind-ro=/data/github
+
+see also:
+- https://www.freedesktop.org/software/systemd/man/systemd-nspawn.html
