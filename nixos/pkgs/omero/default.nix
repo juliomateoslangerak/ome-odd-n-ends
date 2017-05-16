@@ -3,7 +3,10 @@
 with pkgs;
 rec {
 
-  packages = (callPackage ./pkgs.nix { inherit pykgs; })
+  packages = (callPackage ./pkgs.nix {
+    inherit pykgs;
+    omero-runtime-deps = deps.runtime;
+    })
   // {
     db.bootstrap = callPackage ./db-bootstrap.nix {
       postgres = packages.postgres;

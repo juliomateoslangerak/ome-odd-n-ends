@@ -26,6 +26,6 @@ with import ../pkgs { inherit pkgs lib; };
 
   environment.systemPackages = [
     omero.packages.server
-  ] ++ omero.deps.dev;
+  ] ; # ++ omero.deps.dev;
 
 }
