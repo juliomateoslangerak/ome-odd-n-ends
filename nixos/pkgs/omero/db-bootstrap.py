@@ -11,8 +11,9 @@
 # and add its `bin` directory to the PATH.)
 # 3. The user you run this script with or the one you specify through this
 # script's command line switch must be able to log into Postgres without
-# being prompted for a password. Moreover, said user must have enough
-# privileges to create databases and roles.
+# being prompted for a password and connect to the `postgres` database.
+# Moreover, said user must have enough privileges to create databases and
+# roles.
 #
 
 from argparse import ArgumentParser, ArgumentTypeError
@@ -201,10 +202,9 @@ class DbBootstrap:
 
     def _populate(self):
         omerodb = self._args.db_name;
-        #init_script_cmd = ['omero', 'db', 'script',
-        #                   '--password', self._args.server_pass,
-        #                   '--file', '-']
-        init_script_cmd = ['cat', '/home/andrea/x.sql']
+        init_script_cmd = ['omero', 'db', 'script',
+                           '--password', self._args.server_pass,
+                           '--file', '-']
         self._psql(omerodb).pipe_sql(init_script_cmd)
 
     def _should_run(self):
