@@ -6,7 +6,7 @@
 
 with lib;
 with types;
-with import ../../pkgs { inherit pkgs lib; };
+with import ../../pkgs { inherit pkgs lib; };  # TODO move outta here!
 {
 
   options = {
@@ -26,6 +26,10 @@ with import ../../pkgs { inherit pkgs lib; };
       '';
     };
   };
+
+# omero-bootstrap-db --db-name omero --db-user omero --db-pass abc123
+# --server-pass abc123 --pg-username root
+# NB needs r/w access to pwd
 
   config = let
     db = config.omero.db;
@@ -50,10 +54,12 @@ with import ../../pkgs { inherit pkgs lib; };
 # CREATE ROLE "${db-user}" LOGIN PASSWORD '${db-pass}';
 # CREATE DATABASE "${db-name}" OWNER "${db-user}" ENCODING 'UTF8';
 
+
   in mkIf enabled
   {
-    services.postgresql.enable = true;
-
+    postgres.enable = true;
+    omero.server.install.enable = true;
+/*
     systemd.services.omero-db-init = {
       description = "One-off OMERO database creation and initialisation.";
 
@@ -81,7 +87,7 @@ with import ../../pkgs { inherit pkgs lib; };
         # containing a shebang followed by the content of out script attribute.
       };
     };
-
+*/
   };
 
 }

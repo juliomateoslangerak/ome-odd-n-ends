@@ -11,7 +11,7 @@ rec {
     db.bootstrap = callPackage ./db-bootstrap.nix {
       postgres = packages.postgres;
       omero-server = packages.server;
-      omero-runtime-deps = deps.dev;
+      omero-py-runtime = deps.py-runtime;
     };
   };
   deps = callPackage ./deps.nix { omero-pkgs = packages; };

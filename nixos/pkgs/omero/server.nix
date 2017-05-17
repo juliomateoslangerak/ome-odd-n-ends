@@ -6,7 +6,11 @@
 # directory and permissions are changed recursively on its contents
 # to make them owned by the specified `omero-user` and `omero-group`.
 #
-# NOTE (1)
+# Note that there's no garbage collection of the unzipped OMERO bundle,
+# after uninstalling this package you'll have to delete the OMERO server
+# directory yourself.
+#
+# NOTE (1) (2)
 #
 { pkgs,
   omero-runtime-deps,
@@ -17,27 +21,21 @@
 
 with pkgs;
 with lib;
+with import ./wrap-utils.nix { inherit pkgs; };
 
 let
-  path = concatStrings
-         (intersperse ":"
-         (map (p: "${p}/bin") omero-runtime-deps));
-
-  omero-wrapper = name: src:
-    writeScript "omero-wrapper" ''
-      #!${bash}/bin/bash -e
-
-      if [ -d '${omero-root}/${name}' ];
+  omero-wrapper = pkg-name: pkg-src:
+    makeScript { name = "omero-wrapper"; runtime-deps = omero-runtime-deps; }
+    ''
+      if [ -d '${omero-root}/${pkg-name}' ];
       then
-        PATH=${path}:$PATH
-        export PATH
-        exec '${omero-root}/${name}/bin/omero' "$@"
+        ${execWithArgs ["${omero-root}/${pkg-name}/bin/omero"]}
       else
         echo Setting up OMERO...
 
         cd '${omero-root}'
-        ${unzip}/bin/unzip '${src}'
-        chown -R ${omero-user}:${omero-group} '${name}'
+        ${unzip}/bin/unzip '${pkg-src}'
+        chown -R ${omero-user}:${omero-group} '${pkg-name}'
 
         echo ...done! Rerun the omero command now.
       fi
@@ -81,4 +79,10 @@ stdenv.mkDerivation rec {
 # a proper Nix package. But for the moment, the best I could do is to let
 # the user decide where to unpack the server bundle and make sure the `omero`
 # command ends up in the PATH through the wrapper script.
+#
+# 2. Garbage Collection. There's probably a way to do it, e.g. storing the
+# package hash in the unzipped server directory and having a service that
+# checks if that hash is still in the Nix store. But I'm not wasting my time
+# on this as a better option is to separate code from data (see point 1 above)
+# and keep all the code in the Nix store which can then be garbage-collected.
 #

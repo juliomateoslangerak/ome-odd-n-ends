@@ -10,6 +10,13 @@ with types;
 {
 
   options = {
+    omero.server.create-machine-account = mkOption {
+      type = bool;
+      default = false;
+      description = ''
+        Whether to create the OMERO server Unix account on this machine.
+      '';
+    };
     omero.server.user = mkOption {
       type = attrs;
       default = {
@@ -48,7 +55,7 @@ with types;
   };
 
   config = let
-    enabled = config.omero.server.enable;
+    enabled = config.omero.server.create-machine-account;
     omero = config.omero.server.user;
   in mkIf enabled
   {

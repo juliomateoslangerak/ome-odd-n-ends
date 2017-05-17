@@ -21,7 +21,7 @@ with types;
     enabled = config.omero.server.enable;
   in mkIf enabled
   {
-
+    omero.server.create-machine-account = true;
   };
 
 }

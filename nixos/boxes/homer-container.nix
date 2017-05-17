@@ -25,7 +25,9 @@ with import ../pkgs { inherit pkgs lib; };
   };
 
   environment.systemPackages = [
-    omero.packages.server
+    pkgs.unzip
+    # omero.packages.server
+    omero.packages.db.bootstrap
   ] ; # ++ omero.deps.dev;
 
 }
