@@ -1,7 +1,6 @@
 #
-# Creates the OMERO server (machine) account if the OMERO server module is
-# enabled. This module also defines options to configure the OMERO root
-# user's password and the OMERO database user.
+# Creates the OMERO server (machine) account. This module also defines options
+# to configure the OMERO root user's password and the OMERO database user.
 #
 { config, pkgs, lib, ... }:
 
