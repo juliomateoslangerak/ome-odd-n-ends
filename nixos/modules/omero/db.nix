@@ -27,73 +27,69 @@ with import ../../pkgs { inherit pkgs lib; };  # TODO move outta here!
     };
   };
 
-# omero-bootstrap-db --db-name omero --db-user omero --db-pass abc123
-# --server-pass abc123 --pg-username root
-# NB needs r/w access to pwd
-
   config = let
     db = config.omero.db;
     enabled = db.enable;
 
-    db-scripts = omero.packages.db.bootstrap.override {
-      db-name = db.name;
-      db-user = db.user.name;
-      db-pass = db.user.password;
-      server-pass = config.omero.users.root.password;
-    };
-    create-script = "${db-scripts}/sql/create.sql";
-    init-script = "${db-scripts}/sql/init.sql";
+    db-name = db.name;
+    db-user = db.user.name;
+    db-pass = db.user.password;
+    server-pass = config.omero.users.root.password;
 
-#    psql = "psql -p ${toString config.services.postgresql.port} -U ${db-user}";
-    psql = "psql -p ${toString config.services.postgresql.port} -U root";
-    # NixOS Postgres module creates a DB admin role of "root" instead of
-    # customary "postgres". So if we exec the script using the "postgres"
-    # NixOS user, we should be able to log in as DB admin without specifying
-    # a password as long as trust auth is enabled.
-
-# CREATE ROLE "${db-user}" LOGIN PASSWORD '${db-pass}';
-# CREATE DATABASE "${db-name}" OWNER "${db-user}" ENCODING 'UTF8';
-
+    dba-username = config.postgres.dba.name;
 
   in mkIf enabled
   {
     postgres.enable = true;
     omero.server.install.enable = true;
-/*
+
     systemd.services.omero-db-init = {
       description = "One-off OMERO database creation and initialisation.";
 
-      bindsTo = [ "postgresql.service" ];
-      after = [ "multi-user.target" "postgresql.service" ];
-      # wantedBy = [ "multi-user.target" ]; shouldn't be needed! see manual
+      bindsTo = [ "postgresql.service" "omero-server-install.service" ];
+      after = [ "multi-user.target" "postgresql.service"
+                "omero-server-install.service" ];
+      wantedBy = [ "multi-user.target" ];
 
-      path = [ pkgs.postgresql ];
+      path = [ omero.packages.db.bootstrap ];
       script = ''
-        echo ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
-        echo ${create-script}
-        echo ${init-script}
-        echo ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
-        # ${psql} -f ${create-script}
-        # ${psql} -d '${db.name}' -f ${init-script}
-      '';
-      # pwd is written to generated script, piping avoids leaving the script
-      # lying around with the password in it.
+        omero-bootstrap-db --pg-username root \
+                           --db-name ${escapeShellArg db-name} \
+                           --db-user ${escapeShellArg db-user} \
+                           --db-pass ${escapeShellArg db-pass} \
+                           --server-pass ${escapeShellArg server-pass}
+      '';                     # NOTE (1) (2)
 
-      serviceConfig = {
+      serviceConfig = {       # NOTE (1)
         Type = "oneshot";
-        # User = "postgres";  # TODO get from config
-        # ExecStart = ?;  not needed, because we specified a script, the NixOS
-        # systemd module will set ExecStart for us to point to a shell script
-        # containing a shebang followed by the content of out script attribute.
+        User = dba-username;  # NOTE (3)
+        WorkingDirectory = "~";
       };
     };
-*/
+
   };
 
 }
 # Notes
 # -----
-# 1. OMERO Unix account. You need a non-root account to run `omero db`, so
-# reuse the existing OMERO Unix account instead of creating an account just
-# to run this service.
+# 1. NixOS systemd scripts. If you use a service script, then you don't have
+# to specify a `serviceConfig.ExecStart` because the NixOS systemd module will
+# set it to point to the script generated from the `script` attribute. Also
+# note the generated script already comes with a shebang, so we don't have to
+# add it to the contents of the `script` attribute.
+#
+# 2. Passwords. TODO! The script gets written with all the passwords in clear
+# text to the Nix store which is world readable. The horror! Also as already
+# noted in `server-users`, we can't possibly keep passwords in a module. A
+# cheap fix is to read those passwords from a user-provided JSON file and pipe
+# them into `omero-bootstrap-db` or use an external environment file (see
+# EnvironmentFile in `systemd.exec` man page) or a combination of the two.
+# A better option would be to implement a more secure mechanism backed by
+# password stores, auth services, etc.
+#
+# 3. Service account. You need a non-root account to run `omero`, so we
+# use DBA account created by our `postgres` module. Also `omero` expects
+# to be able to write to the user's home or working directory. Specifying
+# a regular user makes the user's home the working directory when systemd
+# runs the script---see `systemd.exec` man page.
 #

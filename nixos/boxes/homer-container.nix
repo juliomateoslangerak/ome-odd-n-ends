@@ -18,9 +18,10 @@ with import ../pkgs { inherit pkgs lib; };
 
   omero = {
     server.enable = true;
-    db.enable = true;
-    db.user.name = "omero";  # TODO why can't I just override the password?
-    db.user.password = "abc123";
+    db = {
+      enable = true;
+      user.password = "abc123";
+    };
     users.root.password = "abc123";
   };
 

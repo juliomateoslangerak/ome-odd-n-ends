@@ -2,6 +2,10 @@
 # Creates the OMERO server (machine) account. This module also defines options
 # to configure the OMERO root user's password and the OMERO database user.
 #
+# TODO keeping passwords in a NixOS module is quite lame. In fact, even if
+# you were going to make the module's file only readable by root, a regular
+# user could still run `nixos-option` to make NixOS spell the beans.
+#
 { config, pkgs, lib, ... }:
 
 with lib;
@@ -39,16 +43,20 @@ with types;
         account or the machine's root user.
       '';
     };
-    omero.db.user = mkOption {
-      type = attrs;
-      default = {
-        name = "omero";
-        password = "";
-      };
+    omero.db.user.name = mkOption {
+      type = string;
+      default = "omero";
       description = ''
-        The OMERO database user's credentials. This is the database user that
-        will own the OMERO database. Not to be confused with the OMERO server
-        Unix account or the machine's root user or the OMERO root user.
+        The OMERO database user name. This is the database user that will own
+        the OMERO database. Not to be confused with the OMERO server Unix
+        account or the machine's root user or the OMERO root user.
+      '';
+    };
+    omero.db.user.password = mkOption {
+      type = string;
+      default = "";
+      description = ''
+        The OMERO database user's password.
       '';
     };
   };

@@ -36,7 +36,7 @@ let
         echo Setting up OMERO...
 
         cd '${omero-root}'
-        ${unzip}/bin/unzip '${pkg-src}'
+        ${unzip}/bin/unzip '${pkg-src}' > /dev/null
         chown -R ${omero-user}:${omero-group} '${pkg-name}'
 
         echo ...done! Rerun the omero command now.
