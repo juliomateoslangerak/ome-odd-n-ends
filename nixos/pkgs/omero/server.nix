@@ -12,16 +12,18 @@
 #
 # NOTE (1) (2)
 #
-{ pkgs,
-  omero-runtime-deps,
+{ # lib imports
+  stdenv, fetchurl, lib, wrap-utils,
+  # package dependencies (unzip is needed for the wrapper, see below)
+  unzip, omero-runtime-deps,
+  # package configuration
   omero-root ? "/var/lib",  # there's no /opt by default in NixOS
   omero-user ? "omero",
   omero-group ? "omero"
 }:
 
-with pkgs;
 with lib;
-with import ./wrap-utils.nix { inherit pkgs; };
+with wrap-utils;
 
 let
   omero-wrapper = pkg-name: pkg-src:

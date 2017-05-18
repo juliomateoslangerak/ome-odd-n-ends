@@ -3,24 +3,24 @@
 # Installs a `omero-bootstrap-db` command to bootstrap the OMERO database
 # as documented in `db-boostrap.py`.
 #
-{ pkgs,
-  postgres,  # our version that goes with OMERO
-  omero-server,
-  omero-py-runtime
+{ # lib imports
+  stdenv, wrap-utils,
+  # package dependencies from our OMERO packages
+  postgres, omero-server, pyenv
 }:
 
-with import ./wrap-utils.nix { inherit pkgs; };
+with wrap-utils;
 
 let
   exec-name = "omero-bootstrap-db";
   db-bootstrap-wrapper = src:
     makePgmWrapper {
       name = exec-name;
-      runtime-deps = [ postgres omero-server omero-py-runtime];
+      runtime-deps = [ postgres omero-server (pyenv []) ];
       pgm = [ "python" src ];
     };
 in
-pkgs.stdenv.mkDerivation rec {
+stdenv.mkDerivation rec {
 
   name = "OMERO.db-bootstrap-${version}";
   release = omero-server.release;

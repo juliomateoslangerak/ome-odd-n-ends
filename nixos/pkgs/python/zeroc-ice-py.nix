@@ -11,9 +11,12 @@
 #
 # Note this package works both with Python 2.7 and 3.5.
 #
-{ pkgs, lib, buildPythonPackage }:
+{ # lib imports
+  fetchurl, lib, buildPythonPackage,
+  # package dependencies
+  mcpp, bzip2, expat, openssl, db5  # NOTE (2)
+}:
 
-with pkgs;
 with lib;
 
 buildPythonPackage rec {

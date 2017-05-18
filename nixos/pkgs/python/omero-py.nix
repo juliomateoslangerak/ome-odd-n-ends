@@ -1,9 +1,12 @@
 #
 # OMERO.py 5.3 package for NixOS 17.03.
 #
-{ pkgs, lib, buildPythonPackage, python, zeroc-ice-py }:
+{ # lib imports & build
+  fetchurl, lib, buildPythonPackage, python, unzip,
+  # package dependencies
+  zeroc-ice-py
+}:
 
-with pkgs;
 with lib;
 
 buildPythonPackage rec {

@@ -6,9 +6,12 @@
 # This Nix package works with Python 2.7 but not 2.6. Might work with
 # Python 3 too, but I haven't tested it.
 #
-{ pkgs, lib, buildPythonPackage, omero-py }:
+{ # lib imports
+  fetchurl, lib, buildPythonPackage,
+  # package dependencies
+  omero-py
+}:
 
-with pkgs;
 with lib;
 
 buildPythonPackage rec {

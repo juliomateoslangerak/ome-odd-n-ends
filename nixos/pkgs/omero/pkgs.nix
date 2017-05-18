@@ -5,11 +5,12 @@
 # this is where we select package versions that are compatible with
 # a given OMERO release---5.3.1 currently.
 #
-{ pkgs, lib, pykgs, omero-runtime-deps }:  # 17.03  NOTE (1)
+{ pkgs, lib, pykgs, omero-runtime-deps, wrap-utils }:  # 17.03  NOTE (1)
 
 with lib;
 let
-  server = pkgs.callPackage ./server.nix { inherit omero-runtime-deps; };
+  server = pkgs.callPackage ./server.nix {
+    inherit wrap-utils omero-runtime-deps; };
 in
 assert hasPrefix "17.03" nixpkgsVersion;
 assert pykgs.zeroc-ice-py.version == pkgs.zeroc_ice.version;
