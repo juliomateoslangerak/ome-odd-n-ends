@@ -39,6 +39,17 @@ with import ../../pkgs { inherit pkgs lib; };  # TODO move outta here!
     install-dir = toString config.omero.server.install.dir;
     repo-dir = toString config.omero.server.repo.dir;
     server-user = config.omero.server.user;
+
+    db-name = config.omero.db.name;
+    db-user = config.omero.db.user.name;
+    db-pass = config.omero.db.user.password;
+
+    omero-set-config = k: v:
+    let
+      omero-cmd = ''omero config set ${k} '${v}' '';
+    in  # NOTE (3)
+      ''runuser ${server-user.name} -c ${escapeShellArg omero-cmd} '';
+
   in mkIf enabled
   {
     omero.server.create-machine-account = true;
@@ -57,17 +68,21 @@ with import ../../pkgs { inherit pkgs lib; };  # TODO move outta here!
       after = [ "multi-user.target" ];
       wantedBy = [ "multi-user.target" ];
 
-      path = [ omero.packages.server ];
+      path = [ omero.packages.server pkgs.utillinux ];
       script = ''
         mkdir -p '${install-dir}'
         omero version || true
 
+        ${omero-set-config "omero.db.name" db-name}
+        ${omero-set-config "omero.db.user" db-user}
+        ${omero-set-config "omero.db.pass" db-pass}
+
         if [ ! -d '${repo-dir}' ]
         then
           mkdir -p '${repo-dir}'
-          chown ${server-user.name}:${server-user.group}
+          chown ${server-user.name}:${server-user.group} '${repo-dir}'
         fi
-      '';  # NOTE (1) (2)
+      '';  # NOTE (1) (2) (4)
 
       serviceConfig.Type = "oneshot";
     };
@@ -92,4 +107,12 @@ with import ../../pkgs { inherit pkgs lib; };  # TODO move outta here!
 # set it to point to the script generated from the `script` attribute. Also
 # note the generated script already comes with a Bash shebang setting the `-e`
 # flag, so we don't have to add it to the contents of the `script` attribute.
+#
+# 3. Server User. TODO. If using this account with `runuser`, then we need to
+# add a login to the server user, which would be better not to. Check if OMERO
+# assumes the user it's run with has a login. If so, then we can just add a
+# login to our server user so the `runuser` commands above will work.
+# Otherwise, we should use another (non-root) user just for this task.
+#
+# 4. Passwords. TODO. Same issue as already noted in `db.nix` module.
 #
