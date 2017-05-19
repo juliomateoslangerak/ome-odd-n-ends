@@ -18,7 +18,7 @@ and add its `bin` directory to the PATH.)
 script's command line switch must be able to log into Postgres without
 being prompted for a password and connect to the `postgres` database.
 Moreover, said user must have enough privileges to create databases and
-roles.
+roles as well as setting the session's user---i.e. executing `SET ROLE`.
 """
 
 from argparse import ArgumentParser, ArgumentTypeError
@@ -115,11 +115,17 @@ CREATE ROLE ${db_user}
 CREATE DATABASE ${db_name}
        OWNER ${db_user}
        ENCODING 'UTF8';
+
+\connect ${db_name}
+
+SET ROLE ${db_user};
 ''')
 
     @staticmethod
     def sql(db_name, db_user, db_pass):
-        """Produce the SLQ to create the OMERO database and role."""
+        """Produce the SLQ that creates the OMERO database and role and then
+        connects to the newly created database with that role.
+        """
         return CreateDb._sql_template.substitute(
             db_name = PgSql.to_quoted_identifier(db_name),
             db_user = PgSql.to_quoted_identifier(db_user),
@@ -185,6 +191,15 @@ class Psql:
         query = DbExist.sql(db_name)
         out = self.run_sql(query)
         return out.find("1") != -1
+
+class OmeroDbScript:
+
+    def __init__(self, server_pass):
+        self._cmd = ['omero', 'db', 'script',
+                     '--password', server_pass,
+                     '--file', '-']
+
+    def generate_sql(self, out_stream):
 
 
 class DbBootstrap:
