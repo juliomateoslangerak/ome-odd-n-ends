@@ -63,7 +63,7 @@ with import ../../pkgs { inherit pkgs lib; };  # TODO move outta here!
     ];
 
     systemd.services.omero-server-install = {
-      description = "One-off OMERO server initialisation.";
+      description = "One-off OMERO server initialisation";
 
       after = [ "multi-user.target" ];
       wantedBy = [ "multi-user.target" ];
@@ -84,7 +84,10 @@ with import ../../pkgs { inherit pkgs lib; };  # TODO move outta here!
         fi
       '';  # NOTE (1) (2) (4)
 
-      serviceConfig.Type = "oneshot";
+      serviceConfig = {
+        Type = "oneshot";
+        RemainAfterExit = "yes";  # NOTE (5)
+      };
     };
 
   };
@@ -115,4 +118,8 @@ with import ../../pkgs { inherit pkgs lib; };  # TODO move outta here!
 # (non-root) user just for this task.
 #
 # 4. Passwords. TODO. Same issue as already noted in `db.nix` module.
+#
+# 5. Service status. We need to tell `systemd` to consider this service still
+# active after exit otherwise `systemd` won't start services that "bind" to
+# it, notably our very own `omero.service`!
 #
