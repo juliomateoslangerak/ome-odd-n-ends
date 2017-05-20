@@ -108,11 +108,11 @@ with import ../../pkgs { inherit pkgs lib; };  # TODO move outta here!
 # note the generated script already comes with a Bash shebang setting the `-e`
 # flag, so we don't have to add it to the contents of the `script` attribute.
 #
-# 3. Server User. TODO. If using this account with `runuser`, then we need to
-# add a login to the server user, which would be better not to. Check if OMERO
-# assumes the user it's run with has a login. If so, then we can just add a
-# login to our server user so the `runuser` commands above will work.
-# Otherwise, we should use another (non-root) user just for this task.
+# 3. Server User. We're using this account with `runuser`, assuming the server
+# user has a login, which would be better not to. However, it seems OMERO too
+# assumes the user it's run with has a login---see note in `server-users`. So
+# for the moment, we recycle the server account instead of creating another
+# (non-root) user just for this task.
 #
 # 4. Passwords. TODO. Same issue as already noted in `db.nix` module.
 #

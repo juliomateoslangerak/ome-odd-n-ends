@@ -25,6 +25,7 @@ with types;
       default = {
         name = "omero";
         group = "omero";
+        isNormalUser = true;  # NOTE (1)
         description = "OMERO server user";
       };
       description = ''
@@ -71,3 +72,11 @@ with types;
   };
 
 }
+# Notes
+# -----
+# 1. Server User. I've tried running OMERO without a home, but it didn't work.
+# Until I find out what else OMERO assumes about its Unix user, I'm going to
+# use a regular account to run the server, with a home and a shell. But I'm
+# leaving the password out so you can't login with this username which makes
+# a bit more secure as a server account.
+#
