@@ -3,7 +3,7 @@
 { config, lib, pkgs, ... }:
 
 with lib;
-with import ../pkgs { inherit pkgs lib; };
+# with import ../pkgs { inherit pkgs lib; };
 {
 
 #  boot.isContainer = true;
@@ -29,11 +29,11 @@ with import ../pkgs { inherit pkgs lib; };
     };
     users.root.password = "abc123";
   };
-
+/*
   environment.systemPackages = [
     pkgs.unzip
-    # omero.packages.server
+    omero.packages.server
     omero.packages.db.bootstrap
-  ] ; # ++ omero.deps.dev;
-
+  ] ++ omero.deps.dev;
+*/
 }
