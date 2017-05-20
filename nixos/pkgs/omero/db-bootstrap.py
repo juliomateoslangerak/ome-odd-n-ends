@@ -164,26 +164,18 @@ class Psql:
         """Create a new instance to execute SQL statements.
         Input parameters determine how to connect to the Postgres server.
         """
-        self.cmd = ['psql'] + self._to_argv(dbname, hostname, port, username)
+        self._cmd = ['psql'] + self._to_argv(dbname, hostname, port, username)
 
     def _check_outcome(self, status, out, err):
         if status != 0:
             sys.stderr.write(err)
-            raise CalledProcessError(cmd=self.cmd, returncode=status)
+            raise CalledProcessError(cmd=self._cmd, returncode=status)
         return out
 
     def run_sql(self, sql):
         """Run the given SQL statements."""
-        psql = Popen(self.cmd, stdin=PIPE, stdout=PIPE, stderr=PIPE)
+        psql = Popen(self._cmd, stdin=PIPE, stdout=PIPE, stderr=PIPE)
         out, err = psql.communicate(input=sql)
-        return self._check_outcome(psql.returncode, out, err)
-
-    def pipe_sql(self, producer_cmd):
-        """Run the given SLQ-producing command, piping its output into psql."""
-        producer = Popen(producer_cmd, stdout=PIPE)
-        psql = Popen(self.cmd, stdin=producer.stdout, stdout=PIPE)
-        producer.stdout.close()  # Allow producer to receive a SIGPIPE if psql exits.
-        out, err = psql.communicate()
         return self._check_outcome(psql.returncode, out, err)
 
     def db_exists(self, db_name):
@@ -192,15 +184,25 @@ class Psql:
         out = self.run_sql(query)
         return out.find("1") != -1
 
-class OmeroDbScript:
 
-    def __init__(self, server_pass):
+class OmeroDbScript:
+    """Produces the SQL to create and populate the OMERO database."""
+
+    def __init__(self, args):
+        self._args = args;
         self._cmd = ['omero', 'db', 'script',
-                     '--password', server_pass,
+                     '--password', args.server_pass,
                      '--file', '-']
 
-    def generate_sql(self, out_stream):
-
+    def generate_sql(self):
+        """Produce the SQL to create and populate the OMERO database."""
+        create_db = CreateDb.sql(self._args.db_name,
+                                 self._args.db_user,
+                                 self._args.db_pass)
+        populate_db = check_output(self._cmd, stderr=sys.stderr)
+        return create_db + populate_db
+# NB the OMERO db script is reasonably small so we suck it into memory to
+# simplify things, but going forward we should use a proper pipeline!
 
 class DbBootstrap:
     """Provides the functionality to create and populate the OMERO database."""
@@ -214,19 +216,6 @@ class DbBootstrap:
                     port     = self._args.pg_port,
                     username = self._args.pg_username)
 
-    def _create(self):
-        statements = CreateDb.sql(self._args.db_name,
-                                  self._args.db_user,
-                                  self._args.db_pass)
-        self._psql().run_sql(statements)
-
-    def _populate(self):
-        omerodb = self._args.db_name;
-        init_script_cmd = ['omero', 'db', 'script',
-                           '--password', self._args.server_pass,
-                           '--file', '-']
-        self._psql(omerodb).pipe_sql(init_script_cmd)
-
     def _should_run(self):
         omerodb = self._args.db_name;
         return not self._psql().db_exists(omerodb)
@@ -236,8 +225,9 @@ class DbBootstrap:
         do nothing otherwise.
         """
         if self._should_run():
-            self._create()
-            self._populate()
+            script = OmeroDbScript(self._args).generate_sql()
+            self._psql().run_sql(script)
+            # NB replace w/ proper pipeline, see note above.
 
 
 if __name__ == "__main__":
@@ -249,6 +239,8 @@ if __name__ == "__main__":
         msg = 'Command `{0}` returned non-zero exit status of: {1}'.format(
             cpe.cmd[0], cpe.returncode)
         sys.stderr.write(msg)
+        if cpe.output != None:
+            sys.stderr.write(str(cpe.output))
         status = 64
     except Exception as e:
         sys.stderr.write(str(e))
