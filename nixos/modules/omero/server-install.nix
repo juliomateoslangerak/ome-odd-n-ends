@@ -52,6 +52,20 @@ with import ../../pkgs { inherit pkgs lib; };  # TODO move outta here!
     in  # NOTE (3)
       ''runuser ${server-user.name} -c ${escapeShellArg omero-cmd} '';
 
+    server-list =
+      let
+        servers = mapAttrsToList
+                    (n: v: ''["${v.host}", ${toString v.port}, "${n}"]'');
+        serialise = submod:
+          let
+            xs = concatStringsSep ", " (servers submod);
+          in "[${xs}]";
+      in
+        serialise config.omero.web.server-list;
+    #
+    # serialise { x = { host="h1"; port=1; }; y = { host="h2"; port=2; }; }
+    # ~~~> string: [["h1", 1, "x"], ["h2", 2, "y"]]
+
   in mkIf enabled
   {
     omero.server.create-machine-account = true;
@@ -80,6 +94,8 @@ with import ../../pkgs { inherit pkgs lib; };  # TODO move outta here!
         ${omero-set-config "omero.db.pass" db-pass}
         ${omero-set-config "omero.db.host" db-host}
         ${omero-set-config "omero.db.port" db-port}
+        ${omero-set-config "omero.web.application_server" "wsgi-tcp"}
+        ${omero-set-config "omero.web.server_list" server-list}
 
         if [ ! -d '${repo-dir}' ]
         then

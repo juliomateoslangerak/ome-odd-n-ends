@@ -27,6 +27,7 @@ with lib;
       enable = true;
       user.password = "abc123";
     };
+    web.enable = true;
     users.root.password = "abc123";
   };
 /*
