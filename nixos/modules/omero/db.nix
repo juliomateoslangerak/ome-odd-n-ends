@@ -25,6 +25,20 @@ with import ../../pkgs { inherit pkgs lib; };  # TODO move outta here!
         The name of the OMERO database.
       '';
     };
+    omero.db.host = mkOption {
+      type = string;
+      default = "localhost";
+      description = ''
+        Host name of the machine where the OMERO database sits.
+      '';
+    };
+    omero.db.port = mkOption {
+      type = int;
+      default = config.services.postgresql.port;
+      description = ''
+        TCP port on which the database server is listening for connections.
+      '';
+    };
   };
 
   config = let

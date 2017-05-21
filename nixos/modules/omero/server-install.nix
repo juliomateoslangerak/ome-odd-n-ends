@@ -43,6 +43,8 @@ with import ../../pkgs { inherit pkgs lib; };  # TODO move outta here!
     db-name = config.omero.db.name;
     db-user = config.omero.db.user.name;
     db-pass = config.omero.db.user.password;
+    db-host = config.omero.db.host;
+    db-port = toString config.omero.db.port;
 
     omero-set-config = k: v:
     let
@@ -76,6 +78,8 @@ with import ../../pkgs { inherit pkgs lib; };  # TODO move outta here!
         ${omero-set-config "omero.db.name" db-name}
         ${omero-set-config "omero.db.user" db-user}
         ${omero-set-config "omero.db.pass" db-pass}
+        ${omero-set-config "omero.db.host" db-host}
+        ${omero-set-config "omero.db.port" db-port}
 
         if [ ! -d '${repo-dir}' ]
         then
