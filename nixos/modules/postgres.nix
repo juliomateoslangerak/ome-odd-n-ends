@@ -34,6 +34,17 @@ with types;
         the customary 'postgres'.
       '';
     };
+    postgres.config.listen-addresses = mkOption {    # NOTE (2)
+      type = listOf string;
+      default = [ "localhost" ];
+      description = ''
+        TCP/IP address(es) the Postgres server will bind to. If empty, Postgres
+        won't use TCP/IP at all but clients can still connect through Unix
+        sockets. A value of 'localhost' enables connections on the loopback
+        interface, whereas a single '*' makes Postgres use all available
+        interfaces. See the Postgres manual for more details.
+      '';
+    };
   };
 
   config = let
@@ -42,6 +53,7 @@ with types;
 
     postgres-user = config.users.users.postgres;
     pg-su = "root";    # NOTE (1)
+    listen_to = concatStrings (intersperse ", " cfg.config.listen-addresses);
   in mkIf cfg.enable
   {
     users.users."${cfg.dba.name}" = {
@@ -52,6 +64,11 @@ with types;
 
     services.postgresql = {
       enable = true;
+
+      enableTCPIP = false;  # NOTE (2)
+      extraConfig = ''
+        listen_addresses = '${listen_to}'
+      '';
 
       identMap = ''
         # Map system users to Postgres database admin users.
@@ -85,4 +102,8 @@ with types;
 # which tells Postgres to create a new cluster and a database super user named
 # 'root' (i.e. same user name as the Unix root account's), sort of against
 # ancient customs that would have it named 'postgres' instead.
+#
+# 2. Postgres TCP/IP. The NixOS module has an `enableTCPIP` option that, if
+# enabled, will start the server with the `-i` option. Postgres docs deprecate
+# it and recommend using `listen_addresses` instead.
 #
