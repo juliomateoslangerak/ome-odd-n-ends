@@ -6,18 +6,19 @@ with lib;
 # with import ../pkgs { inherit pkgs lib; };
 {
 
-#  boot.isContainer = true;
-#  networking.hostName = mkDefault "homer";
-#  networking.useDHCP = false;
-
-  networking.hostName = "localhost";
-  # NB this seems to fix the exception thrown by InetAddress.getLocalHost
-  # when running Java in a NixOS container. OMERO indirectly calls this
-  # method at start up, so we need this fix.
-
   imports = [
     ../modules
   ];
+
+  boot.isContainer = true;
+  networking = {
+    hostName = "localhost";
+    # NB ^this seems to fix the exception thrown by InetAddress.getLocalHost
+    # when running Java in a NixOS container. OMERO indirectly calls this
+    # method at start up, so we need this fix.
+    useDHCP = false;
+    firewall.enable = false;
+  };
 
   ext.users.admins = [ "andrea" ];
 
