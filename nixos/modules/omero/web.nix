@@ -1,5 +1,15 @@
 #
-# TODO
+# Installs and runs OMERO.web as a `systemd` service.
+#
+# TODO deadlocked on very first start in homer container, systemd's logs
+# had a weird message of:
+#
+#  [ERROR] OMERO.web workers (PID 657) - no such process
+#
+# grep says it comes from:  OmeroPy/src/omero/plugins/web.py
+# Anyhoo, after rebooting homer, everything worked fine. WTH is going on?!
+#
+# TODO still need to set up Nginx with Gunicorn. See OMERO.web docs.
 #
 { config, pkgs, lib, ... }:
 
@@ -17,16 +27,6 @@ with import ../../pkgs { inherit pkgs lib; };  # TODO move outta here!
       '';
     };
     omero.web.server-list = mkOption {
-      type = attrs;
-      # TODO type should be the one below, except it's not working!
-      # Setting this option with e.g.
-      #
-      #   web.server-list.x = { host = "h1"; port = 1; };
-      #   web.server-list.y = { host = "h2"; port = 2; };
-      #
-      # has no effect. What ends up in the OMERO config is always the content
-      # of the default value. WTH is going on?!
-      /*
       type = attrsOf (submodule {
         options = {
           host = mkOption {
@@ -43,7 +43,6 @@ with import ../../pkgs { inherit pkgs lib; };  # TODO move outta here!
           };
        };
       });
-      */
       default = {
         omero = {
           host = "localhost";
@@ -64,7 +63,7 @@ with import ../../pkgs { inherit pkgs lib; };  # TODO move outta here!
     install-dir = toString config.omero.server.install.dir;
     omero-prefix = "${install-dir}/${omero-pkg.name}";
     server-username = config.omero.server.user.name;
-  in mkIf cfg.enable  # TODO why is that enable always stays false?!
+  in mkIf cfg.enable
   {
     omero.server.install.enable = true;
 
@@ -96,5 +95,5 @@ with import ../../pkgs { inherit pkgs lib; };  # TODO move outta here!
 # -----
 # 1. Service account. You need a non-root account to run `omero`. Also `omero`
 # expects to be able to write to the user's home or working directory. I think
-# the same applies to OMERO.web but haven't actually checked...
+# the same applies to OMERO.web but haven't actually checked...(TODO check!)
 #

@@ -1,5 +1,5 @@
 #
-# Installs and runs the OMERO server on this machine.
+# Installs and runs OMERO.server as a `systemd` service.
 #
 { config, pkgs, lib, ... }:
 
