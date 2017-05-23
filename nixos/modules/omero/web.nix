@@ -9,8 +9,6 @@
 # grep says it comes from:  OmeroPy/src/omero/plugins/web.py
 # Anyhoo, after rebooting homer, everything worked fine. WTH is going on?!
 #
-# TODO still need to set up Nginx with Gunicorn. See OMERO.web docs.
-#
 { config, pkgs, lib, ... }:
 
 with lib;
