@@ -9,18 +9,20 @@
 
 with lib;
 let
+  jdk = pkgs.jdk;               # openjdk-8u121b13
+  jre = pkgs.jre;               # openjre-8u131b11
   server = pkgs.callPackage ./server.nix {
     inherit wrap-utils omero-runtime-deps; };
+  smuggler = pkgs.callPackage ./smuggler.nix { inherit jre; };
 in
 assert hasPrefix "17.03" nixpkgsVersion;
 assert pykgs.zeroc-ice-py.version == pkgs.zeroc_ice.version;
 assert pykgs.omero-py.release == server.release;  # NOTE (2)
 {
-  jdk = pkgs.jdk;               # openjdk-8u121b13
-  jre = pkgs.jre;               # openjre-8u131b11
+  inherit jdk jre;
   mencoder = pkgs.mplayer;      # 1.3.0             NOTE (3)
   postgres = pkgs.postgresql;   # 9.5.6
-  inherit server;
+  inherit server smuggler;
   zeroc_ice = pkgs.zeroc_ice;   # 3.6.3
 }
 // pykgs
