@@ -12,8 +12,8 @@ with lib;
 buildPythonPackage rec {
 
   name = "OMERO.py-${version}";
-  release = "5.3.1";
-  version = "${release}-ice36-b61";
+  release = "5.3.2";
+  version = "${release}-ice36-b62";
   meta = {
     homepage = "https://www.openmicroscopy.org/";
     description = "OMERO Python language bindings.";
@@ -28,7 +28,7 @@ buildPythonPackage rec {
   src = fetchurl {
     url = "http://downloads.openmicroscopy.org/omero/" +
           "${release}/artifacts/${name}.zip";
-    sha256 = "1x55pm96p2mfn183cyx905d55hybkb6x71mlrpcyj49grzq7bcbj";
+    sha256 = "01dc75nnw9bvkfh6m6r5z1n8x4h0cbv1cc75f9hsv38hbbjjjpji";
   };
 
   phases = [ "unpackPhase" "installPhase" ];
