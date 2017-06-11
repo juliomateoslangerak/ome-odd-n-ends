@@ -35,7 +35,7 @@ programming---Bird's work springs to mind, in particular the [homomorphism
 lemma][homomorphism-lemma]. But algebraists knew a more general version
 of this fact (UMP of free objects) at least half a century before and I
 think the idea originated in the theory of vector spaces probably in the
-19th century or earlier? (Check when exactly, just out of curiosity.)
+19th century or earlier? (Find out when exactly, just out of curiosity.)
 
 
 
