@@ -12,7 +12,7 @@ with lib;
 stdenv.mkDerivation rec {
 
   name = "ome-smuggler-${version}";
-  version = "0.1.0-beta";
+  version = "1.0.0";
   meta = {
     homepage = http://c0c0n3.github.io/ome-smuggler/;
     description = ''
@@ -25,7 +25,7 @@ stdenv.mkDerivation rec {
   src = fetchurl {
     url = "https://github.com/c0c0n3/ome-smuggler/releases/download/" +
           "v${version}/${name}.tgz";
-    sha256 = "1hxrx1q3v0b6iykxfsgw3hwz4qiq5zy1vagw1iw7drvhg6kbn7nd";
+    sha256 = "0nzxm55292ii22hphdkpf1b93g7x3s5842f7nfpav6j9dlyl63qn";
   };
 
   buildInputs = [ makeWrapper ];
