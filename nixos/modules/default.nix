@@ -2,6 +2,7 @@
   imports = [
     ./omero
     ./postgres.nix
-    ./users.nix
+    ./swap-file.nix  # NOTE lifted from trixie-dotses
+    ./users.nix      # NOTE lifted from trixie-dotses
   ];
 }
