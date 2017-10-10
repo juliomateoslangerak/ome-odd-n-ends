@@ -34,7 +34,7 @@ in rec {
     inherit buildPythonPackage omero-py;
   };
 
-  omero-py = callPackage ./omero-py.nix {  # 5.3.1
+  omero-py = callPackage ./omero-py.nix {  # 5.4.0
     inherit python buildPythonPackage zeroc-ice-py;
   };
 

@@ -1,5 +1,5 @@
 #
-# OMERO 5.3 package for NixOS 17.03.
+# OMERO 5.4 package for NixOS 17.03.
 # This package installs a wrapper script that will unzip the OMERO
 # server bundle on its first run and call `omero` on each subsequent
 # run. The server bundle is unzipped into the specified `omero-root`
@@ -46,8 +46,8 @@ in
 stdenv.mkDerivation rec {
 
   name = "OMERO.server-${version}";
-  release = "5.3.2";
-  version = "${release}-ice36-b62";
+  release = "5.4.0";
+  version = "${release}-ice36-b74";
   meta = {
     homepage = "https://www.openmicroscopy.org/";
     description = ''
@@ -60,7 +60,7 @@ stdenv.mkDerivation rec {
   src = fetchurl {
     url = "http://downloads.openmicroscopy.org/omero/" +
           "${release}/artifacts/${name}.zip";
-    sha256 = "1bgsd22fg5mx72b50va6rwmfss6k2al08wik21zzkaw6r7r1czfy";
+    sha256 = "ab12d5b9e6be1a0fdfbd273398b85cd6a92d271e6e94bd9902b053b73a86ebe4";
   };
 
   phases = [ "installPhase" ];

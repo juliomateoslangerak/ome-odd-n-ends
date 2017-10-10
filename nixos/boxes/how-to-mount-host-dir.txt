@@ -28,7 +28,7 @@ I've found a quick workaround: specify the mount point in
 - /etc/containers/homer.conf
 with e.g.
 
-   EXTRA_NSPAWN_FLAGS=--bind-ro=/data/github
+   EXTRA_NSPAWN_FLAGS="--bind-ro=/data/github --bind=/data/dropbox"
 
 see also:
 - https://www.freedesktop.org/software/systemd/man/systemd-nspawn.html
