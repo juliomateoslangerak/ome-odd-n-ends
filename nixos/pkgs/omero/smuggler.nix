@@ -1,5 +1,5 @@
 #
-# OME Smuggler 1.1.0-beta package for NixOS 17.03.
+# OME Smuggler 1.2.0 package for NixOS 17.03.
 #
 { # lib imports
   stdenv, fetchurl, lib, makeWrapper,
@@ -12,7 +12,7 @@ with lib;
 stdenv.mkDerivation rec {
 
   name = "ome-smuggler-${version}";
-  version = "1.1.0-beta";
+  version = "1.2.0";
   meta = {
     homepage = http://c0c0n3.github.io/ome-smuggler/;
     description = ''
@@ -25,7 +25,7 @@ stdenv.mkDerivation rec {
   src = fetchurl {
     url = "https://github.com/c0c0n3/ome-smuggler/releases/download/" +
           "v${version}/${name}.tgz";
-    sha256 = "12cp0p930drp9frxpwjs2z5gkqknivnqbkbf1hcdjlkp0ijknrl4";
+    sha256 = "089jhrc4r9kx2pzxbq4fa5gkp8qcir6glsn9sssjdzfpkxwsxrs4";
   };
 
   buildInputs = [ makeWrapper ];
