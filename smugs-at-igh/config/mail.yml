@@ -1,0 +1,11 @@
+!!ome.smuggler.config.items.MailConfig
+fromAddress: omeropost@mri.cnrs.fr
+mailServerHost: opale.sic.montp.cnrs.fr
+mailServerPort: 465
+useSmtps: true
+skipServerCertificateValidation: true
+username: omeropost
+password: *********
+retryIntervals: [10, 10, 120, 1440, 1440, 1440]
+deadMailDir: mail/failed
+sysAdminEmail: omero@mri.cnrs.fr
