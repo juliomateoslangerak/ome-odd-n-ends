@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="100%"
+   height="100%"
+   viewBox="0 0 1024 768"
+   style="background: #3c4747;"
+   id="svg8887"
+   version="1.1"
+   inkscape:version="0.91+devel+osxmenu r12898"
+   sodipodi:docname="4.svg">
+  <sodipodi:namedview
+     pagecolor="#3c4747"
+     bordercolor="#ffffff"
+     borderopacity="1"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.5"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="true"
+     inkscape:window-maximized="0"
+     inkscape:showpageshadow="false"
+     borderlayer="true"
+     id="namedview8889"
+     inkscape:cx="201.84375"
+     inkscape:cy="-490.29312"
+     inkscape:window-width="1440"
+     inkscape:window-height="851"
+     inkscape:window-x="0"
+     inkscape:window-y="23">
+    <inkscape:grid
+       type="xygrid"
+       color="#b5357b"
+       opacity="0.1254902"
+       empcolor="#5d6e79"
+       empopacity="0.25098039"
+       enabled="true"
+       empspacing="15"
+       id="grid8891" />
+  </sodipodi:namedview>
+  <defs
+     id="defs8893">
+    <style
+       type="text/css"
+       id="style30246">
+      @import url(https://fonts.googleapis.com/css?family=Kaushan+Script);
+      @import url(https://fonts.googleapis.com/css?family=Cherry+Cream+Soda);
+      @import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono);
+      @import url(https://fonts.googleapis.com/css?family=Ubuntu+Condensed);
+    </style>
+    <clipPath
+       id="clipPath9001-3-0-0-1"
+       clipPathUnits="userSpaceOnUse">
+      <path
+         inkscape:connector-curvature="0"
+         id="path9003-6-6-4-3"
+         d="m 507,683 0,58 49.42339,-28.53461 z"
+         style="fill:none;fill-rule:evenodd;stroke:#cccccc;stroke-width:2.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+    </clipPath>
+    <clipPath
+       id="clipPath35508"
+       clipPathUnits="userSpaceOnUse">
+      <path
+         inkscape:connector-curvature="0"
+         id="path35510"
+         d="m 507,683 0,58 49.42339,-28.53461 z"
+         style="fill:none;fill-rule:evenodd;stroke:#cccccc;stroke-width:2.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+    </clipPath>
+    <clipPath
+       id="clipPath35512"
+       clipPathUnits="userSpaceOnUse">
+      <path
+         inkscape:connector-curvature="0"
+         id="path35514"
+         d="m 507,683 0,58 49.42339,-28.53461 z"
+         style="fill:none;fill-rule:evenodd;stroke:#cccccc;stroke-width:2.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+    </clipPath>
+    <clipPath
+       id="clipPath35516"
+       clipPathUnits="userSpaceOnUse">
+      <path
+         inkscape:connector-curvature="0"
+         id="path35518"
+         d="m 507,683 0,58 49.42339,-28.53461 z"
+         style="fill:none;fill-rule:evenodd;stroke:#cccccc;stroke-width:2.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+    </clipPath>
+    <clipPath
+       id="clipPath35520"
+       clipPathUnits="userSpaceOnUse">
+      <path
+         inkscape:connector-curvature="0"
+         id="path35522"
+         d="m 507,683 0,58 49.42339,-28.53461 z"
+         style="fill:none;fill-rule:evenodd;stroke:#cccccc;stroke-width:2.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+    </clipPath>
+    <clipPath
+       id="clipPath35524"
+       clipPathUnits="userSpaceOnUse">
+      <path
+         inkscape:connector-curvature="0"
+         id="path35526"
+         d="m 507,683 0,58 49.42339,-28.53461 z"
+         style="fill:none;fill-rule:evenodd;stroke:#cccccc;stroke-width:2.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+    </clipPath>
+  </defs>
+  <metadata
+     id="metadata8895">
+    <rdf:RDF>
+      <cc:Work>
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:groupmode="layer"
+     id="layer0"
+     inkscape:label="Background Fill"
+     sodipodi:insensitive="true">
+    <rect
+       style="fill:#3c4747"
+       width="1050"
+       height="800"
+       x="-10"
+       y="-22"
+       id="rect8898" />
+  </g>
+  <g
+     id="layer1"
+     inkscape:groupmode="layer"
+     inkscape:label="Layer 1">
+    <text
+       id="text5728"
+       y="56.4375"
+       x="24.15625"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:32px;line-height:125%;font-family:'Cherry Cream Soda';-inkscape-font-specification:'Cherry Cream Soda';letter-spacing:0px;word-spacing:0px;display:inline;fill:#f6cb9b;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       xml:space="preserve"
+       sodipodi:linespacing="125%"><tspan
+         y="56.4375"
+         x="24.15625"
+         id="tspan5726"
+         sodipodi:role="line">But generally useful...</tspan></text>
+    <text
+       id="text47113"
+       y="468.00012"
+       x="104"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:32px;line-height:125%;font-family:'Ubuntu Condensed';-inkscape-font-specification:'Ubuntu Condensed, ';letter-spacing:0px;word-spacing:0px;opacity:1;fill:#f5f3f2;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       xml:space="preserve"
+       sodipodi:linespacing="125%"><tspan
+         y="468.00012"
+         x="104"
+         sodipodi:role="line"
+         id="tspan47115" /><tspan
+         y="508.00012"
+         x="104"
+         sodipodi:role="line"
+         id="tspan47117" /></text>
+    <text
+       sodipodi:linespacing="125%"
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:32px;line-height:125%;font-family:'Ubuntu Condensed';-inkscape-font-specification:'Ubuntu Condensed, ';letter-spacing:0px;word-spacing:0px;opacity:1;fill:#f5f3f2;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       x="144"
+       y="148.00012"
+       id="text9332"><tspan
+         id="tspan9334"
+         sodipodi:role="line"
+         x="144"
+         y="148.00012">to build a distributed system where scalability and</tspan><tspan
+         sodipodi:role="line"
+         x="144"
+         y="188.00012"
+         id="tspan9338">resilience are achieved by avoiding:</tspan><tspan
+         id="tspan9336"
+         sodipodi:role="line"
+         x="144"
+         y="228.00012" /></text>
+    <text
+       id="text9340"
+       y="289.4375"
+       x="64.143227"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:32px;line-height:125%;font-family:'Cherry Cream Soda';-inkscape-font-specification:'Cherry Cream Soda';letter-spacing:0px;word-spacing:0px;display:inline;fill:#f37962;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       xml:space="preserve"
+       sodipodi:linespacing="125%"><tspan
+         y="289.4375"
+         x="64.143227"
+         id="tspan9342"
+         sodipodi:role="line">space coupling</tspan></text>
+    <text
+       sodipodi:linespacing="125%"
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:32px;line-height:125%;font-family:'Ubuntu Condensed';-inkscape-font-specification:'Ubuntu Condensed, ';letter-spacing:0px;word-spacing:0px;opacity:1;fill:#f5f3f2;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       x="364"
+       y="290.98401"
+       id="text9344"><tspan
+         sodipodi:role="line"
+         x="364"
+         y="290.98401"
+         id="tspan9350">direct links among communicating components</tspan><tspan
+         id="tspan9348"
+         sodipodi:role="line"
+         x="364"
+         y="330.98401" /></text>
+    <text
+       sodipodi:linespacing="125%"
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:32px;line-height:125%;font-family:'Cherry Cream Soda';-inkscape-font-specification:'Cherry Cream Soda';letter-spacing:0px;word-spacing:0px;display:inline;fill:#f37962;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="64.143227"
+       y="349.4375"
+       id="text9354"><tspan
+         sodipodi:role="line"
+         id="tspan9356"
+         x="64.143227"
+         y="349.4375">time coupling</tspan></text>
+    <text
+       id="text9358"
+       y="350.98401"
+       x="364"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:32px;line-height:125%;font-family:'Ubuntu Condensed';-inkscape-font-specification:'Ubuntu Condensed, ';letter-spacing:0px;word-spacing:0px;opacity:1;fill:#f5f3f2;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       xml:space="preserve"
+       sodipodi:linespacing="125%"><tspan
+         id="tspan9360"
+         y="350.98401"
+         x="364"
+         sodipodi:role="line">components must exist at the time communication</tspan><tspan
+         y="390.98401"
+         x="364"
+         sodipodi:role="line"
+         id="tspan9364">takes place</tspan><tspan
+         y="430.98401"
+         x="364"
+         sodipodi:role="line"
+         id="tspan9362" /></text>
+    <text
+       id="text9366"
+       y="528.00012"
+       x="144"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:32px;line-height:125%;font-family:'Ubuntu Condensed';-inkscape-font-specification:'Ubuntu Condensed, ';letter-spacing:0px;word-spacing:0px;opacity:1;fill:#f5f3f2;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       xml:space="preserve"
+       sodipodi:linespacing="125%"><tspan
+         y="528.00012"
+         x="144"
+         sodipodi:role="line"
+         id="tspan9384">Fill fridge by going shopping to riverside Tesco vs </tspan><tspan
+         y="568.00012"
+         x="144"
+         sodipodi:role="line"
+         id="tspan9380">buy groceries online and get them delivered. </tspan><tspan
+         y="608.00012"
+         x="144"
+         sodipodi:role="line"
+         id="tspan9390">What happens when workloads increase?</tspan><tspan
+         y="648.00012"
+         x="144"
+         sodipodi:role="line"
+         id="tspan9382">What kind of failures can each system tolerate?</tspan><tspan
+         y="688.00012"
+         x="144"
+         sodipodi:role="line"
+         id="tspan9372" /></text>
+    <text
+       id="text9374"
+       y="473.4375"
+       x="64.143227"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:32px;line-height:125%;font-family:'Cherry Cream Soda';-inkscape-font-specification:'Cherry Cream Soda';letter-spacing:0px;word-spacing:0px;display:inline;fill:#f37962;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       xml:space="preserve"
+       sodipodi:linespacing="125%"><tspan
+         y="473.4375"
+         x="64.143227"
+         id="tspan9376"
+         sodipodi:role="line">Example</tspan></text>
+  </g>
+</svg>
